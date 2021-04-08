@@ -52,7 +52,7 @@ int main(void)
 		switch (opcionIngresadaMenu)
 		{
 			case 1:
-				primerOperandoIngresado = pedirDecimal("\n1. Ingresar 1er operando (A = %.2f): ", "1. Error, Ingresar 1er operando (A = %.2f): ", primerOperandoIngresado);
+				primerOperandoIngresado = pedirDecimal("\n1. Ingresar 1er operando (A = %.2lf): ", "1. Error, Ingresar 1er operando (A = %.2lf): ", primerOperandoIngresado);
 				printf("----------------------------------------------------------------\n");
 				resultadoSuma = 0;
 				resultadoResta = 0;
@@ -63,7 +63,7 @@ int main(void)
 				break;
 
 			case 2:
-				segundoOperandoIngresado = pedirDecimal("\n2. Ingresar 2do operando (B = %.2f): ", "2. Error, Ingresar 2do operando (B = %.2f): ", segundoOperandoIngresado);
+				segundoOperandoIngresado = pedirDecimal("\n2. Ingresar 2do operando (B = %.2lf): ", "2. Error, Ingresar 2do operando (B = %.2lf): ", segundoOperandoIngresado);
 				printf("----------------------------------------------------------------\n");
 				resultadoSuma = 0;
 				resultadoResta = 0;
@@ -75,26 +75,26 @@ int main(void)
 
 			case 3:
 				printf("\n3. Calcular todas las operaciones");
-				printf("\n    A. Calcular la suma (%.2f + %.2f)", primerOperandoIngresado, segundoOperandoIngresado);
-				printf("\n    B. Calcular la resta (%.2f - %.2f)", primerOperandoIngresado, segundoOperandoIngresado);
-				printf("\n    C. Calcular la division (%.2f / %.2f)", primerOperandoIngresado, segundoOperandoIngresado);
+				printf("\n    A. Calcular la suma (%.2lf + %.2lf)", primerOperandoIngresado, segundoOperandoIngresado);
+				printf("\n    B. Calcular la resta (%.2lf - %.2lf)", primerOperandoIngresado, segundoOperandoIngresado);
+				printf("\n    C. Calcular la division (%.2lf / %.2lf)", primerOperandoIngresado, segundoOperandoIngresado);
 
 				//Validando si es posible dividir
 				if (primerOperandoIngresado != 0 && segundoOperandoIngresado != 0)
 				{
-					printf("\n    C. Calcular la division (%.2f / %.2f)", primerOperandoIngresado, segundoOperandoIngresado);
+					printf("\n    C. Calcular la division (%.2lf / %.2lf)", primerOperandoIngresado, segundoOperandoIngresado);
 					resultadoDivision = dividir(primerOperandoIngresado, segundoOperandoIngresado);
 				}
 
-				printf("\n    D. Calcular la multiplicacion (%.2f * %.2f)", primerOperandoIngresado, segundoOperandoIngresado);
-				printf("\n    E. Calcular el factorial (%.0f!) y (%.0f!)", primerOperandoIngresado, segundoOperandoIngresado);
+				printf("\n    D. Calcular la multiplicacion (%.2lf * %.2lf)", primerOperandoIngresado, segundoOperandoIngresado);
+				printf("\n    E. Calcular el factorial (%.0lf!) y (%.0lf!)", primerOperandoIngresado, segundoOperandoIngresado);
 
 				//Realizamos las operaciones
 				resultadoSuma = sumar(primerOperandoIngresado, segundoOperandoIngresado);
 				resultadoResta = restar(primerOperandoIngresado, segundoOperandoIngresado);
 				resultadoMultiplicacion = multiplicar(primerOperandoIngresado, segundoOperandoIngresado);
 
-				//validando para realizar la factorizacion
+				//validando para realizar el factorial
 				if (primerOperandoIngresado < 171)
 				{
 					resultadoPrimerFactorial = factorial(primerOperandoIngresado);
@@ -108,25 +108,25 @@ int main(void)
 
 			case 4:
 				printf("\n4. Informar resultados");
-				printf("\n    A. El resultado de (%.2f + %.2f) es: %.2f", primerOperandoIngresado, segundoOperandoIngresado, resultadoSuma);
-				printf("\n    B. El resultado de (%.2f - %.2f) es: %.2f", primerOperandoIngresado, segundoOperandoIngresado, resultadoResta);
+				printf("\n    A. El resultado de (%.2lf + %.2lf) es: %.2lf", primerOperandoIngresado, segundoOperandoIngresado, resultadoSuma);
+				printf("\n    B. El resultado de (%.2lf - %.2lf) es: %.2lf", primerOperandoIngresado, segundoOperandoIngresado, resultadoResta);
 
 				//validando para saber cual enunciado mostrarle al usuario
 				if (resultadoDivision != 0)
 				{
-					printf("\n    C. El resultado de (%.2f / %.2f) es: %.2f", primerOperandoIngresado, segundoOperandoIngresado, resultadoDivision);
+					printf("\n    C. El resultado de (%.2lf / %.2lf) es: %.2lf", primerOperandoIngresado, segundoOperandoIngresado, resultadoDivision);
 				}
 				else
 				{
 					printf("\n    C. !! No es posible dividir por cero !!");
 				}
 
-				printf("\n    D. El resultado de (%.2f * %.2f) es: %.2f", primerOperandoIngresado, segundoOperandoIngresado, resultadoMultiplicacion);
+				printf("\n    D. El resultado de (%.2lf * %.2lf) es: %.2lf", primerOperandoIngresado, segundoOperandoIngresado, resultadoMultiplicacion);
 
 				//validando para saber cual enunciado mostrarle al usuario
 				if (primerOperandoIngresado > 170)
 				{
-					printf("\n    E. No es posible realizar el factorial de: (%.2f!)", primerOperandoIngresado);
+					printf("\n    E. No es posible realizar el factorial de: (%.2lf!)", primerOperandoIngresado);
 				}
 				else
 				{
@@ -135,7 +135,7 @@ int main(void)
 
 				if (segundoOperandoIngresado > 170)
 				{
-					printf("\n       No es posible realizar el factorial de: (%.2f!)", segundoOperandoIngresado);
+					printf("\n       No es posible realizar el factorial de: (%.2lf!)", segundoOperandoIngresado);
 				}
 				else
 				{
@@ -147,7 +147,7 @@ int main(void)
 
 			case 5:
 				printf("\n****************************************************************");
-				printf("\n              Gracias por preferir nuestro sistema              ");
+				printf("\n          !! Gracias por preferir nuestro sistema !!            ");
 				printf("\n****************************************************************");
 				opcionIngresadaMenu = 5;
 				break;

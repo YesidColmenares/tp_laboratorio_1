@@ -122,7 +122,6 @@ double factorial(double valor)
 			{
 				resultadoFactor *= (i * -1);
 			}
-
 		}
 	}
 
