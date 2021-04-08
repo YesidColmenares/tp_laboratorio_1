@@ -16,7 +16,7 @@
  * @param cadenaTexto, es la instruccion que se le pide al usuario realizar
  * @param cadenaError, es el mensaje de error, por si el ususario se equivoca
  * @param numeroActualIngresado, es el numero actual que se encuentra ingresado en el sistema
- * @return retorna el numero ingresado ya validado.
+ * @return retorna el numero ingresado ya validado en tipo de dato double
  */
 double pedirDecimal(char cadenaTexto[], char cadenaError[], float numeroActualIngresado);
 
@@ -26,7 +26,7 @@ double pedirDecimal(char cadenaTexto[], char cadenaError[], float numeroActualIn
  *
  * @param cadenaTexto, es la instruccion que se le pide al usuario realizar
  * @param cadenaError, es el mensaje de error, por si el ususario se equivoca al ingresar
- * @return retorna el numero ingresado ya validado.
+ * @return retorna el numero ingresado ya validado en tipo de dato int
  */
 int pedirEntero(char cadenaTexto[], char cadenaError[]);
 
@@ -36,7 +36,7 @@ int pedirEntero(char cadenaTexto[], char cadenaError[]);
  *
  * @param cadenaTexto, es la instruccion que se le pide al usuario realizar
  * @param cadenaError, es el mensaje de error, por si el ususario se equivoca al ingresar
- * @return retorna el caracter ingresado ya validado
+ * @return retorna el caracter ingresado ya validado en tipo de dato char
  */
 char pedirCaracter(char cadenaTexto[], char cadenaError[]);
 
@@ -45,7 +45,7 @@ char pedirCaracter(char cadenaTexto[], char cadenaError[]);
  *
  * @param primerValor, primer numero sumando
  * @param segundoValor, segundo numero sumando
- * @return retorna el resultado de la suma
+ * @return retorna el resultado de la suma en tipo de dato double
  */
 double sumar(double primerValor, double segundoValor);
 
@@ -54,7 +54,7 @@ double sumar(double primerValor, double segundoValor);
  *
  * @param primerValor, primer numero es el minuendo
  * @param segundoValor, segundo numero es el substraendo
- * @return retorna la diferencia de la resta
+ * @return retorna la diferencia de la resta en tipo de dato double
  */
 double restar(double primerValor, double segundoValor);
 
@@ -63,7 +63,7 @@ double restar(double primerValor, double segundoValor);
  *
  * @param primerValor, primer numero es el multiplicando
  * @param segundoValor, segundo numero es el multiplicador
- * @return retorna el producto de la multiplicacion
+ * @return retorna el producto de la multiplicacion en tipo de dato double
  */
 double multiplicar(double primerValor, double segundoValor);
 
@@ -72,7 +72,7 @@ double multiplicar(double primerValor, double segundoValor);
  *
  * @param primerValor, primer numero es el dividiendo
  * @param segundoValor, segundo numero es el divisor
- * @return retorna el cociente de la division
+ * @return retorna el cociente de la division en tipo de dato double
  */
 double dividir(double primerValor, double segundoValor);
 
@@ -80,7 +80,7 @@ double dividir(double primerValor, double segundoValor);
  * @brief realiza el factorial del numero ingresado como parametro
  *
  * @param Valor, es el numero al cual se le realiza el factorial
- * @return retorna el factorial
+ * @return retorna el factorial en tipo de dato double
  */
 double factorial(double Valor);
 

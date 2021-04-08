@@ -2,7 +2,7 @@
  ============================================================================
  Name        : TP1.c
  Author      : Yesid Colmenares
- Version     : 1.0
+ Version     :
  Copyright   : Your copyright notice
  Description : Hello World in C, Ansi-style
  ============================================================================
