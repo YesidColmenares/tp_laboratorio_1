@@ -1,61 +1,30 @@
 #include "entradaSalida.h"
 
-double pedirDecimal(char cadenaTexto[], char cadenaError[], float numeroActualIngresado)
+double pedirDecimalValidar(char cadenaTexto[], char cadenaError[], double minimo, double maximo)
 {
 
 	double numeroDoubleIngresado;
-	int comprobacion;
 
-	numeroDoubleIngresado = 0;
+	numeroDoubleIngresado = pedirDecimal(cadenaTexto);
 
-	printf(cadenaTexto, numeroActualIngresado);
-	fflush(stdin);
-	comprobacion = scanf("%lf", &numeroDoubleIngresado);
-	while (comprobacion == 0)
+	while (numeroDoubleIngresado == -1 || validacionRangoEnteroDecimal(numeroDoubleIngresado, minimo, maximo) == -1)
 	{
-		printf(cadenaError, numeroActualIngresado);
-		fflush(stdin);
-		comprobacion = scanf("%lf", &numeroDoubleIngresado);
+		numeroDoubleIngresado = pedirDecimal(cadenaError);
 	}
 	return numeroDoubleIngresado;
 }
 
-int pedirEntero(char cadenaTexto[], char cadenaError[])
+int pedirEnteroValidar(char cadenaTexto[], char cadenaError[], int minimo, int maximo)
 {
-
 	int numeroIntIngresado;
-	int comprobacion;
 
-	numeroIntIngresado = 0;
+	numeroIntIngresado = pedirEntero(cadenaTexto);
 
-	printf(cadenaTexto, numeroIntIngresado);
-	fflush(stdin);
-	comprobacion = scanf("%d", &numeroIntIngresado);
-	while (comprobacion == 0)
+	while (numeroIntIngresado == -1 || validacionRangoEnteroDecimal(numeroIntIngresado, minimo, maximo) == -1)
 	{
-		printf("%s", cadenaError);
-		fflush(stdin);
-		comprobacion = scanf("%d", &numeroIntIngresado);
+		numeroIntIngresado = pedirEntero(cadenaError);
 	}
 	return numeroIntIngresado;
-}
-
-char pedirCaracter(char cadenaTexto[], char cadenaError[])
-{
-
-	char caracterCharIngresado;
-	int comprobacion;
-
-	printf("%s", cadenaTexto);
-	fflush(stdin);
-	comprobacion = scanf("%c", &caracterCharIngresado);
-	while (comprobacion == 0 || (caracterCharIngresado != 'A' && caracterCharIngresado != 'B' && caracterCharIngresado != 'C' && caracterCharIngresado != 'D' && caracterCharIngresado != 'E'))
-	{
-		printf("%s", cadenaError);
-		fflush(stdin);
-		comprobacion = scanf("%c", &caracterCharIngresado);
-	}
-	return caracterCharIngresado;
 }
 
 double sumar(double primerValor, double segundoValor)
@@ -93,12 +62,17 @@ double dividir(double primerValor, double segundoValor)
 
 	double resultadoDivision;
 
-	resultadoDivision = primerValor / segundoValor;
+	resultadoDivision = -1;
+
+	if (primerValor != 0 && segundoValor != 0)
+	{
+		resultadoDivision = primerValor / segundoValor;
+	}
 
 	return resultadoDivision;
 }
 
-double factorial(double valor)
+double factorialValidar(double valor, double minimo, double maximo)
 {
 
 	int i;
@@ -106,8 +80,9 @@ double factorial(double valor)
 
 	resultadoFactor = 1;
 
-	if (valor > 0)
+	if (validacionRangoEnteroDecimal(valor, minimo, maximo) == 0)
 	{
+		resultadoFactor = 1;
 		for (i = (int) valor; i > 1; i--)
 		{
 			resultadoFactor *= i;
@@ -115,56 +90,65 @@ double factorial(double valor)
 	}
 	else
 	{
-		if (valor < 0)
-		{
-			resultadoFactor = -1;
-			for (i = (int) valor; i < 0; i++)
-			{
-				resultadoFactor *= (i * -1);
-			}
-		}
+		resultadoFactor = -1;
 	}
 
 	return resultadoFactor;
 }
 
+int validacionRangoEnteroDecimal(double primerValor, double minimo, double maximo)
+{
+	int valorRetorno;
 
+	valorRetorno = 0;
 
+	if (primerValor < minimo || primerValor > maximo)
+	{
+		valorRetorno = -1;
+	}
 
+	return valorRetorno;
+}
 
+int pedirEntero(char cadenaTexto[])
+{
+	int valorIngresado;
+	int valorRetorno;
 
+	printf("%s", cadenaTexto);
+	fflush(stdin);
+	valorRetorno = scanf("%d", &valorIngresado);
 
+	if (valorRetorno == 1)
+	{
+		valorRetorno = valorIngresado;
+	}
+	else
+	{
+		valorRetorno = -1;
+	}
 
+	return valorRetorno;
+}
 
+double pedirDecimal(char cadenaTexto[])
+{
+	double valorIngresado;
+	double valorRetorno;
 
+	printf("%s", cadenaTexto);
+	fflush(stdin);
+	valorRetorno = scanf("%lf", &valorIngresado);
 
+	if (valorRetorno == 1)
+	{
+		valorRetorno = valorIngresado;
+	}
+	else
+	{
+		valorRetorno = -1;
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	return valorRetorno;
+}
 

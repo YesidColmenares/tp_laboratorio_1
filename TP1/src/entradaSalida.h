@@ -15,10 +15,11 @@
  *
  * @param cadenaTexto, es la instruccion que se le pide al usuario realizar
  * @param cadenaError, es el mensaje de error, por si el ususario se equivoca
- * @param numeroActualIngresado, es el numero actual que se encuentra ingresado en el sistema
+ * @param minimo, es el valor minimo que el usuario puede ingresar.
+ * @param maximo, es el valor maximo que el usuario puede ingresar.
  * @return retorna el numero ingresado ya validado en tipo de dato double
  */
-double pedirDecimal(char cadenaTexto[], char cadenaError[], float numeroActualIngresado);
+double pedirDecimalValidar(char cadenaTexto[], char cadenaError[], double minimo, double maximo);
 
 /**
  * @brief imprime en pantalla la instruccion, guarda el dato ingresado por el usuario,
@@ -26,19 +27,11 @@ double pedirDecimal(char cadenaTexto[], char cadenaError[], float numeroActualIn
  *
  * @param cadenaTexto, es la instruccion que se le pide al usuario realizar
  * @param cadenaError, es el mensaje de error, por si el ususario se equivoca al ingresar
+ * @param minimo, es el valor minimo que el usuario puede ingresar.
+ * @param maximo, es el valor maximo que el usuario puede ingresar.
  * @return retorna el numero ingresado ya validado en tipo de dato int
  */
-int pedirEntero(char cadenaTexto[], char cadenaError[]);
-
-/**
- * @brief imprime en pantalla la instruccion, guarda el dato ingresado por el usuario,
- * lo valida y en caso que este bien lo retornar, de lo contrario pide de nuevo al usuario ingresar el dato
- *
- * @param cadenaTexto, es la instruccion que se le pide al usuario realizar
- * @param cadenaError, es el mensaje de error, por si el ususario se equivoca al ingresar
- * @return retorna el caracter ingresado ya validado en tipo de dato char
- */
-char pedirCaracter(char cadenaTexto[], char cadenaError[]);
+int pedirEnteroValidar(char cadenaTexto[], char cadenaError[], int minimo, int maximo);
 
 /**
  * @brief realiza la suma de dos numeros decimales o enteros pasados como parametros
@@ -68,21 +61,76 @@ double restar(double primerValor, double segundoValor);
 double multiplicar(double primerValor, double segundoValor);
 
 /**
- * @brief realiza la division de dos numeros decimales o enteros pasados como parametros
+ * @brief realiza la division de dos numeros decimales o enteros pasados como parametros solo si es posible
  *
  * @param primerValor, primer numero es el dividiendo
  * @param segundoValor, segundo numero es el divisor
- * @return retorna el cociente de la division en tipo de dato double
+ * @return retorna el cociente de la division en tipo de dato double solo si se puede dividir,
+ * de lo contrario retorna un -1.
  */
 double dividir(double primerValor, double segundoValor);
 
 /**
- * @brief realiza el factorial del numero ingresado como parametro
+ * @brief valida y realiza el factorial del numero ingresado solo si se cumple la condicion
  *
- * @param Valor, es el numero al cual se le realiza el factorial
- * @return retorna el factorial en tipo de dato double
+ * @param valor, es el numero al cual se le realiza el factorial
+ * @param minimo, es el valor minimo a calcular
+ * @param maximo, es el valor maximo a calcular
+ * @return retorna el factorial en tipo de dato double si cumple la condicion,
+ * retorna -1 si no cumple la condicion o retorna 1 si el valor numerico ingresado es 0
  */
-double factorial(double Valor);
+double factorialValidar(double valor, double minimo, double maximo);
+
+/**
+ * @brief valida un numero Decimal o Entero y retorna un 0 o un 1 dependiendo si cumple la condicion
+ *
+ * @param primerValor, es el numero a validar el rango
+ * @param minimo, es el valor minimo a calcular
+ * @param maximo, es el valor maximo a calcular
+ * @return retorna 0 si el valor cumple con la condicion, de lo contrario retorna -1
+ */
+int validacionRangoEnteroDecimal(double primerValor, double minimo, double maximo);
+
+/**
+ * @brief Pide un numero entero valida que sea entero y lo retorna en caso que se cumpla, de lo contrario
+ * retorna -1
+ *
+ * @param cadenaTexto, es la instruccion que se le pide al usuario realizar
+ * @return retorna el numero solo si es de tipo entero, si no retorna -1.
+ */
+int pedirEntero(char cadenaTexto[]);
+
+/**
+ * @brief Pide un numero decimal valida que sea decimal y lo retorna en caso que se cumpla, de lo contrario
+ * retorna -1
+ *
+ * @param cadenaTexto, es la instruccion que se le pide al usuario realizar
+ * @return retorna el numero solo si es de tipo decimal, si no retorna -1.
+ */
+double pedirDecimal(char cadenaTexto[]);
 
 #endif /* ENTRADASALIDA_H_ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
