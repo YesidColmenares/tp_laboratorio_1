@@ -6,8 +6,8 @@
  */
 #include <stdio.h>
 #include <ctype.h>
-#ifndef REALIZAROPERACION_H_
-#define REALIZAROPERACION_H_
+#ifndef OPERACIONES_REALIZAROPERACION_H_
+#define OPERACIONES_REALIZAROPERACION_H_
 
 /**
  * @brief realiza la suma de dos numeros decimales o enteros pasados como parametros
@@ -68,4 +68,4 @@ int dividir(double primerValor, double segundoValor, double *resultadoDivision);
 int factorial(double valor, double minimo, double maximo, double *resultadoFactorial);
 
 
-#endif /* REALIZAROPERACION_H_ */
+#endif /* OPERACIONES_REALIZAROPERACION_H_ */

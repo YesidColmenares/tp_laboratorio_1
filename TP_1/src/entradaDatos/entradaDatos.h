@@ -4,8 +4,8 @@
  *  Created on: 10 abr. 2021
  *      Author: Yesid
  */
-#ifndef ENTRADADATOS_H_
-#define ENTRADADATOS_H_
+#ifndef ENTRADADATOS_ENTRADADATOS_H_
+#define ENTRADADATOS_ENTRADADATOS_H_
 
 /**
  * @brief imprime en pantalla la instruccion, guarda el dato ingresado por el usuario, lo valida y en caso
@@ -31,4 +31,4 @@ int pedirEntero(char cadenaTexto[], char cadenaError[], int minimo, int maximo);
  */
 double pedirDouble(char cadenaTexto[], char cadenaError[], double minimo, double maximo);
 
-#endif /* ENTRADADATOS_H_ */
+#endif /* ENTRADADATOS_ENTRADADATOS_H_ */

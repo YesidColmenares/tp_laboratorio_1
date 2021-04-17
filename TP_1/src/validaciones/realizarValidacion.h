@@ -6,8 +6,8 @@
  */
 #include <stdio.h>
 #include <ctype.h>
-#ifndef REALIZARVALIDACION_H_
-#define REALIZARVALIDACION_H_
+#ifndef VALIDACIONES_REALIZARVALIDACION_H_
+#define VALIDACIONES_REALIZARVALIDACION_H_
 
 /**
  * @brief recibe un puntero como parametro para retornar el numero validado solo si es posible
@@ -39,4 +39,4 @@ int validarEntero(char cadenaTexto[], int *numeroIntIngresado);
  */
 int validarRangoDoubleEntero(double valor, double minimo, double maximo);
 
-#endif /* REALIZARVALIDACION_H_ */
+#endif /* VALIDACIONES_REALIZARVALIDACION_H_ */
