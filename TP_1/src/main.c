@@ -89,7 +89,6 @@ int main(void)
 					multiplicar(primerOperandoIngresado, segundoOperandoIngresado, &resultadoMultiplicacion);
 					retornoPrimerFactorial = factorial(primerOperandoIngresado, 0, 170, &resultadoPrimerFactorial);
 					retornoSegundoFactorial = factorial(segundoOperandoIngresado, 0, 170, &resultadoSegundoFactorial);
-
 					banderaDelPrimero = -1;
 					printf("\n--------------------------------------------------------------------------\n");
 				}

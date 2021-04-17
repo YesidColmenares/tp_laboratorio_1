@@ -13,12 +13,11 @@ int sumar(double primerValor, double segundoValor, double *resultadoSuma)
 
 	valorRetorno = 1;
 
-	if (isalpha(primerValor) == 0 && isalpha(segundoValor) == 0)
+	if (isdigit(primerValor) == 0 && isdigit(segundoValor) == 0)
 	{
 		*resultadoSuma = primerValor + segundoValor;
 		valorRetorno = 0;
 	}
-
 	return valorRetorno;
 }
 
@@ -28,12 +27,11 @@ int restar(double primerValor, double segundoValor, double *resultadoResta)
 
 	valorRetorno = 1;
 
-	if (isalpha(primerValor) == 0 && isalpha(segundoValor) == 0)
+	if (isdigit(primerValor) == 0 && isdigit(segundoValor) == 0)
 	{
 		*resultadoResta = primerValor - segundoValor;
 		valorRetorno = 0;
 	}
-
 	return valorRetorno;
 }
 
@@ -43,12 +41,11 @@ int multiplicar(double primerValor, double segundoValor, double *resultadoMultip
 
 	valorRetorno = 1;
 
-	if (isalpha(primerValor) == 0 && isalpha(segundoValor) == 0)
+	if (isdigit(primerValor) == 0 && isdigit(segundoValor) == 0)
 	{
 		*resultadoMultiplicacion = primerValor * segundoValor;
 		valorRetorno = 0;
 	}
-
 	return valorRetorno;
 }
 
@@ -58,7 +55,7 @@ int dividir(double primerValor, double segundoValor, double *resultadoDivision)
 
 	valorRetorno = 1;
 
-	if (isalpha(primerValor) == 0 && isalpha(segundoValor) == 0)
+	if (isdigit(primerValor) == 0 && isdigit(segundoValor) == 0)
 	{
 		if (segundoValor != (double) 0)
 		{
@@ -66,7 +63,6 @@ int dividir(double primerValor, double segundoValor, double *resultadoDivision)
 			valorRetorno = 0;
 		}
 	}
-
 	return valorRetorno;
 }
 
@@ -79,7 +75,7 @@ int factorial(double valor, double minimo, double maximo, double *resultadoFacto
 	valorFactorial = 1;
 	valorRetorno = 1;
 
-	if (isalpha(valor) == 0 && isalpha(minimo) == 0 && isalpha(maximo) == 0)
+	if (isdigit(valor) == 0 && isdigit(minimo) == 0 && isdigit(maximo) == 0)
 	{
 		if (validarRangoDoubleEntero(valor, minimo, maximo) == 0)
 		{
@@ -92,7 +88,6 @@ int factorial(double valor, double minimo, double maximo, double *resultadoFacto
 			valorRetorno = 0;
 		}
 	}
-
 	return valorRetorno;
 }
 

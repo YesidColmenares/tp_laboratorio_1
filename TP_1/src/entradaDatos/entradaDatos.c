@@ -24,13 +24,13 @@ int pedirEntero(char cadenaTexto[], char cadenaError[], int minimo, int maximo)
 double pedirDouble(char cadenaTexto[], char cadenaError[], double minimo, double maximo)
 {
 	double numeroDoubleIngresado;
-	int valorRetorno;
+	int valorRetornoValidacionDouble;
 
-	valorRetorno = validarDouble(cadenaTexto, &numeroDoubleIngresado);
+	valorRetornoValidacionDouble = validarDouble(cadenaTexto, &numeroDoubleIngresado);
 
-	while (valorRetorno == 0 || validarRangoDoubleEntero(numeroDoubleIngresado, minimo, maximo) == 1)
+	while (valorRetornoValidacionDouble == 0 || validarRangoDoubleEntero(numeroDoubleIngresado, minimo, maximo) == 1)
 	{
-		valorRetorno = validarDouble(cadenaError, &numeroDoubleIngresado);
+		valorRetornoValidacionDouble = validarDouble(cadenaError, &numeroDoubleIngresado);
 	}
 	return numeroDoubleIngresado;
 }
