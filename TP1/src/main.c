@@ -36,6 +36,8 @@ int main(void)
 
 	//inicializacion variable
 	banderaDelPrimero = 1;
+	primerOperandoIngresado = 0;
+	segundoOperandoIngresado = 0;
 
 	do
 	{
@@ -160,7 +162,7 @@ int main(void)
 				else
 				{
 					printf("\n--------------------------------------------------------------------------");
-					printf("\n!! No se pueden mostrar los resultados sin calcular las operaciones !!");
+					printf("\n!! No se pueden mostrar los resultados sin haber calculado las operaciones !!");
 					printf("\n--------------------------------------------------------------------------\n");
 				}
 				break;

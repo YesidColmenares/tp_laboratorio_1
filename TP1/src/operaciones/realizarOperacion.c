@@ -66,6 +66,7 @@ int dividir(double primerValor, double segundoValor, double *resultadoDivision)
 			valorRetorno = 0;
 		}
 	}
+
 	return valorRetorno;
 }
 
@@ -91,7 +92,7 @@ int factorial(double valor, double minimo, double maximo, double *resultadoFacto
 			valorRetorno = 0;
 		}
 	}
+
 	return valorRetorno;
 }
-
 
