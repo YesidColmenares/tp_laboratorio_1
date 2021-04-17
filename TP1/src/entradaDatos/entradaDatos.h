@@ -1,7 +1,7 @@
 /*
  * entradaDatos.h
  *
- *  Created on: 16 abr. 2021
+ *  Created on: 10 abr. 2021
  *      Author: Yesid
  */
 #ifndef ENTRADADATOS_H_
