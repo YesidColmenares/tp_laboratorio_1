@@ -60,7 +60,7 @@ int dividir(double primerValor, double segundoValor, double *resultadoDivision)
 
 	if (isalpha(primerValor) == 0 && isalpha(segundoValor) == 0)
 	{
-		if ((int) primerValor != 0 && (int) segundoValor != 0)
+		if (segundoValor != (double) 0)
 		{
 			*resultadoDivision = primerValor / segundoValor;
 			valorRetorno = 0;
