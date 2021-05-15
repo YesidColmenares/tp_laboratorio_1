@@ -24,7 +24,7 @@ void printModificationsMenu(eEmployee *listE, int idEntered, eSector *sector)
 	printf("\n-------------------------------------------------------------------------\n");
 	printf("\n------------------------------MODIFICATIONS------------------------------");
 	printf("\n1. Name");
-	printf("\n2. Last Name");
+	printf("\n2. Last name");
 	printf("\n3. Salary");
 	printf("\n4. Sector");
 	printf("\n5. Back to main menu");
