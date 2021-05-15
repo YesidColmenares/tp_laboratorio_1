@@ -34,28 +34,31 @@ int modifyEmployee(eEmployee *listE, int sizeE, int id, int option, eSector *sec
 			case 1:
 				system("cls");
 				inputString(listE[id].name, "Enter name: ", "Error, enter name: ");
+				returnValue = TRUE;
 				break;
 
 			case 2:
 				system("cls");
 				inputString(listE[id].lastName, "Enter lastName: ", "Error, enter lastName: ");
+				returnValue = TRUE;
 				break;
 
 			case 3:
 				system("cls");
 				inputFloat(&listE[id].salary, "Enter salary: ", "Error, enter salary: ");
+				returnValue = TRUE;
 				break;
 
 			case 4:
 				system("cls");
 				printSectors(sector, SIZE_SECTOR);
-				inputIntR(&listE[id].sector, "Enter sector: ", "Error, enter sector: ", sector[0].id, sector[sizeS - 1].id);
+				inputIntR(&listE[id].sector, "\n\nEnter sector: ", "Error, enter sector: ", sector[0].id, sector[sizeS - 1].id);
+				returnValue = TRUE;
 				break;
 			case 5:
 				system("cls");
 				break;
 		}
-		returnValue = TRUE;
 	}
 	return returnValue;
 }
@@ -100,7 +103,7 @@ int aboveAverageEmployees(eEmployee *listE, int sizeE, eAuxiliary *auxiliary)
 	{
 		if (listE[auxiliary[i].id].salary > auxiliary[0].averageSalary)
 		{
-			printf("\n%d %s %s", listE[auxiliary[i].id].id, listE[auxiliary[i].id].name, listE[auxiliary[i].id].lastName);
+			printf("%d %s %s\n", listE[auxiliary[i].id].id, listE[auxiliary[i].id].name, listE[auxiliary[i].id].lastName);
 			returnValue = TRUE;
 		}
 	}

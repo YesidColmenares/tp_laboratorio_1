@@ -1,9 +1,10 @@
 #ifndef ARRAYEMPLOYEES_ARRAYEMPLOYEES_H_
 #define ARRAYEMPLOYEES_ARRAYEMPLOYEES_H_
-#include "../eAuxiliary/eAuxiliary.h"
 #define SIZE_EMPLOYEES 1000
 #define VOID -1
 #define OCCUPIED 1
+#include "../eAuxiliary/eAuxiliary.h"
+#include "../eSector/eSector.h"
 
 typedef struct
 {
@@ -69,10 +70,11 @@ int sortEmployeesByLastName(eEmployee *listE, int sizeE, int order);
  *
  * @param listE, structure name
  * @param sizeE, structure size
+ * @param sector, structure name
  * @param order, sort order (1 option, low to high; 2 option, high to low)
  * @return, 1 if it is correct or 2 if there is an error
  */
-int sortEmployeesBySector(eEmployee *listE, int sizeE, int order);
+int sortEmployeesBySector(eEmployee *listE, int sizeE, eSector *sector, int order);
 
 /**
  * @brief check if there are registered employees

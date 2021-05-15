@@ -134,7 +134,7 @@ int sortEmployeesByLastName(eEmployee *listE, int sizeE, int order)
 	return returnValue;
 }
 
-int sortEmployeesBySector(eEmployee *listE, int sizeE, int order)
+int sortEmployeesBySector(eEmployee *listE, int sizeE, eSector *sector, int order)
 {
 	int returnValue;
 	int i;
@@ -152,7 +152,7 @@ int sortEmployeesBySector(eEmployee *listE, int sizeE, int order)
 		{
 			for (j = i + 1; j < sizeA; j++)
 			{
-				if (listE[auxiliary[i].id].sector > listE[auxiliary[j].id].sector)
+				if (strcmp(sector[listE[auxiliary[i].id].sector-1].sectorName,sector[listE[auxiliary[j].id].sector-1].sectorName) > 0)
 				{
 					cpy = listE[auxiliary[j].id];
 					listE[auxiliary[j].id] = listE[auxiliary[i].id];
@@ -168,7 +168,7 @@ int sortEmployeesBySector(eEmployee *listE, int sizeE, int order)
 		{
 			for (j = i + 1; j < sizeA; j++)
 			{
-				if (listE[auxiliary[i].id].lastName < listE[auxiliary[j].id].lastName)
+				if (strcmp(sector[listE[auxiliary[i].id].sector-1].sectorName,sector[listE[auxiliary[j].id].sector-1].sectorName) < 0)
 				{
 					cpy = listE[auxiliary[j].id];
 					listE[auxiliary[j].id] = listE[auxiliary[i].id];

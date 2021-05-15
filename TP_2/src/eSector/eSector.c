@@ -19,14 +19,14 @@ int printSectors(eSector *sector, int sizeS)
 void hardcodeSector(eSector *sector)
 {
 	sector[0].id = 1;
-	strcpy(sector[0].sectorName,"Marketing");
+	strcpy(sector[0].sectorName,"MARKETING");
 
 	sector[1].id = 2;
-	strcpy(sector[1].sectorName,"Computing");
+	strcpy(sector[1].sectorName,"COMPUTING");
 
 	sector[2].id = 3;
-	strcpy(sector[2].sectorName,"Production");
+	strcpy(sector[2].sectorName,"PRODUCTION");
 
 	sector[3].id = 4;
-	strcpy(sector[3].sectorName,"Human Resources or Personnel");
+	strcpy(sector[3].sectorName,"HHRR");
 }

@@ -38,7 +38,7 @@ int main(void)
 		WhileConditionMainMenu = 0;
 		printWelcomToTheSystem();
 		initAuxiliary(auxiliary, SIZE_AUXILIARY);
-		inputIntR(&optionEntered, "\n\nEnter option: ", "\nError, enter option: ", 0, 5);
+		inputIntR(&optionEntered, "\n\nEnter option: ", "\nError, enter option: ", 1, 5);
 
 		switch (optionEntered)
 		{
@@ -51,11 +51,11 @@ int main(void)
 				break;
 
 			case 3:
-				mainMenuFunctionCase3(listE, SIZE_EMPLOYEES);
+				mainMenuFunctionCase3(listE, SIZE_EMPLOYEES, sector);
 				break;
 
 			case 4:
-				mainMenuFunctionCase4(listE, SIZE_EMPLOYEES, auxiliary);
+				mainMenuFunctionCase4(listE, SIZE_EMPLOYEES, auxiliary, sector);
 				break;
 
 			case 5:

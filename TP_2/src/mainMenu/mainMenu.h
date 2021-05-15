@@ -30,9 +30,10 @@ int mainMenuFunctionCase2(eEmployee *listE, int sizeE, eSector *sector, int size
  *
  * @param listE, struct name
  * @param sizeE, struct size
+ * @param sector, struct name
  * @return, 1 if it is correct or 2 if there is an error
  */
-int mainMenuFunctionCase3(eEmployee *listE, int sizeE);
+int mainMenuFunctionCase3(eEmployee *listE, int sizeE, eSector *sector);
 
 /**
  * @brief performs the fourth menu option
@@ -40,8 +41,9 @@ int mainMenuFunctionCase3(eEmployee *listE, int sizeE);
  * @param listE, struct name
  * @param sizeE, struct size
  * @param auxiliary, struct name
+ * @param sector, struct name
  * @return, 1 if it is correct or 2 if there is an error
  */
-int mainMenuFunctionCase4(eEmployee *listE, int sizeE, eAuxiliary *auxiliary);
+int mainMenuFunctionCase4(eEmployee *listE, int sizeE, eAuxiliary *auxiliary, eSector *sector);
 
 #endif /* MAINMENU_MAINMENU_H_ */

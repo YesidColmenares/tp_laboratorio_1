@@ -34,8 +34,8 @@ int mainMenuFunctionCase2(eEmployee *listE, int sizeE, eSector *sector, int size
 	system("cls");
 	if (thereAreEmployees(listE, SIZE_EMPLOYEES) == TRUE)
 	{
-		printEmployees(listE, SIZE_EMPLOYEES);
-		inputIntR(&idEntered, "\n\nEnter the ID to modify: ", "Error, enter the ID to modify: ", 0, SIZE_EMPLOYEES);
+		printEmployees(listE, SIZE_EMPLOYEES, sector);
+		inputIntR(&idEntered, "\nEnter the ID to modify: ", "Error, enter the ID to modify: ", 0, SIZE_EMPLOYEES);
 
 		if (findEmployeeById(listE, SIZE_EMPLOYEES, idEntered) == TRUE)
 		{
@@ -43,26 +43,30 @@ int mainMenuFunctionCase2(eEmployee *listE, int sizeE, eSector *sector, int size
 			system("cls");
 			do
 			{
-				printModificationsMenu(listE, idEntered);
-				inputIntR(&optionEntered, "\nEnter option: ", "\nError, enter option: ", 0, 5);
-				modifyEmployee(listE, SIZE_EMPLOYEES, idEntered, optionEntered, sector, SIZE_SECTOR);
+				printModificationsMenu(listE, idEntered, sector);
+				inputIntR(&optionEntered, "\n\nEnter option: ", "\nError, enter option: ", 0, 5);
+				if (modifyEmployee(listE, SIZE_EMPLOYEES, idEntered, optionEntered, sector, SIZE_SECTOR) == TRUE)
+				{
+					system("cls");
+					printf("! successful modification !\n");
+				}
 
 			} while (optionEntered != 5);
 		}
 		else
 		{
 			system("cls");
-			printf("! The id entered does not exist !");
+			printf("! The id entered does not exist !\n");
 		}
 	}
 	else
 	{
-		printf("! No registered employees !");
+		printf("! No registered employees !\n");
 	}
 	return returnValue;
 }
 
-int mainMenuFunctionCase3(eEmployee *listE, int sizeE)
+int mainMenuFunctionCase3(eEmployee *listE, int sizeE, eSector *sector)
 {
 	int returnValue;
 	int optionEntered;
@@ -72,7 +76,7 @@ int mainMenuFunctionCase3(eEmployee *listE, int sizeE)
 	system("cls");
 	if (thereAreEmployees(listE, SIZE_EMPLOYEES) == TRUE)
 	{
-		printEmployees(listE, SIZE_EMPLOYEES);
+		printEmployees(listE, SIZE_EMPLOYEES, sector);
 		inputInt(&optionEntered, "\nEnter the ID to unsubscribe: ", "\nError, enter the ID to unsubscribe: ");
 
 		if (removeEmployee(listE, SIZE_EMPLOYEES, optionEntered) == TRUE)
@@ -89,12 +93,12 @@ int mainMenuFunctionCase3(eEmployee *listE, int sizeE)
 	}
 	else
 	{
-		printf("! No registered employees !");
+		printf("! No registered employees !\n");
 	}
 	return returnValue;
 }
 
-int mainMenuFunctionCase4(eEmployee *listE, int sizeE, eAuxiliary *auxiliary)
+int mainMenuFunctionCase4(eEmployee *listE, int sizeE, eAuxiliary *auxiliary, eSector *sector)
 {
 	int returnValue;
 	int WhileConditionSecundaryMenu;
@@ -110,14 +114,15 @@ int mainMenuFunctionCase4(eEmployee *listE, int sizeE, eAuxiliary *auxiliary)
 			WhileConditionSecundaryMenu = 0;
 			printReport();
 			inputIntR(&optionEntered, "\nEnter option: ", "Error, enter option:", 1, 6);
+			system("cls");
 			switch (optionEntered)
 			{
 				case 1:
-					reportsMenuFunction1(listE, SIZE_EMPLOYEES);
+					reportsMenuFunction1(listE, SIZE_EMPLOYEES, sector);
 					break;
 
 				case 2:
-					reportsMenuFunction2(listE, SIZE_EMPLOYEES);
+					reportsMenuFunction2(listE, SIZE_EMPLOYEES, sector);
 					break;
 
 				case 3:
@@ -142,7 +147,7 @@ int mainMenuFunctionCase4(eEmployee *listE, int sizeE, eAuxiliary *auxiliary)
 	else
 	{
 		system("cls");
-		printf("! No registered employees !");
+		printf("! No registered employees !\n");
 	}
 
 	return returnValue;
