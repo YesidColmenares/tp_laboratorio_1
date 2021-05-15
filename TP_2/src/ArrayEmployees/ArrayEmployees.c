@@ -1,5 +1,4 @@
 #include "ArrayEmployees.h"
-#include <string.h>
 
 int initEmployees(eEmployee *listE, int sizeE)
 {
@@ -121,7 +120,7 @@ int sortEmployeesByLastName(eEmployee *listE, int sizeE, int order)
 		{
 			for (j = i + 1; j < sizeA; j++)
 			{
-				if (strcmp(listE[auxiliary[i].id].lastName, listE[auxiliary[j].id].lastName) < 0)
+				if (strcmp(listE[auxiliary[i].id].lastName,listE[auxiliary[j].id].lastName) < 0)
 				{
 					cpy = listE[auxiliary[j].id];
 					listE[auxiliary[j].id] = listE[auxiliary[i].id];

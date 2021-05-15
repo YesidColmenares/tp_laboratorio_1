@@ -7,6 +7,7 @@
 #include "../eAuxiliary/eAuxiliary.h"
 #include "../eSector/eSector.h"
 #include "../dataEntry/input.h"
+#include "../string/charString.h"
 
 /**
  * @brief add an employee to the array

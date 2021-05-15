@@ -12,7 +12,11 @@ int addEmployee(eEmployee *listE, int sizeE, eSector *sector)
 		listE[freePosition].id = freePosition;
 
 		inputString(listE[freePosition].name, "Enter name: ", "Error, enter name: ");
+		stringToUpper(listE[freePosition].name);
+
 		inputString(listE[freePosition].lastName, "Enter last name: ", "Error, enter lastName: ");
+		stringToUpper(listE[freePosition].lastName);
+
 		inputFloat(&listE[freePosition].salary, "Enter salary: ", "Error, enter salary:  ");
 
 		printSectors(sector, SIZE_SECTOR);
@@ -34,12 +38,14 @@ int modifyEmployee(eEmployee *listE, int sizeE, int id, int option, eSector *sec
 			case 1:
 				system("cls");
 				inputString(listE[id].name, "Enter name: ", "Error, enter name: ");
+				stringToUpper(listE[id].name);
 				returnValue = TRUE;
 				break;
 
 			case 2:
 				system("cls");
 				inputString(listE[id].lastName, "Enter last name: ", "Error, enter lastName: ");
+				stringToUpper(listE[id].lastName);
 				returnValue = TRUE;
 				break;
 

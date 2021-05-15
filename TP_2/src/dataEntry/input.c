@@ -5,7 +5,6 @@
  *      Author: Yesid
  */
 #include "input.h"
-#include "../dataValidation/validate.h"
 
 void inputIntR(int *intNumberEntered, char textString[], char textStringError[], int min, int max)
 {
@@ -101,7 +100,8 @@ void inputString(char charStringEntered[], char textString[], char textStringErr
 	printf("%s", textString);
 	fflush(stdin);
 	scanf("%[^\n]", charStringEntered);
-	while (strcmp(charStringEntered, "\0") == 0)
+
+	while (strcmp(charStringEntered, "\0") == 0 || validationString(charStringEntered) == 0)
 	{
 		printf("%s", textStringError);
 		fflush(stdin);

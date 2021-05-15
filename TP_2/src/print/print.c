@@ -1,5 +1,6 @@
 #include "print.h"
 #include <stdio.h>
+#include "../string/charString.h"
 
 void printTotalSalaries(eAuxiliary *auxiliary)
 {

@@ -5,10 +5,9 @@
  *      Author: Yesid
  */
 
-#include <stdio.h>
-#include <stdlib.h>
 #ifndef DATAENTRY_INPUT_H_
 #define DATAENTRY_INPUT_H_
+#include "../dataValidation/validate.h"
 
 /**
  * @brief requests a number of type int and validates it

@@ -43,11 +43,11 @@ int validateRangeInt(int value, int min, int max);
 int validateRangeFloat(float value, float min, float max);
 
 /**
- * @brief validates the range of an entered character
+ * @brief validate a string of characters
  *
- * @param character, character to validate
- * @return, 1 if it is correct or 2 if there is an error
+ * @param charStringEntered, string of characters to validate
+ * @return 1 if it is correct or 2 if there is an error
  */
-int validateRangeChar(char character);
+int validationString(char *charStringEntered);
 
 #endif /* DATAVALIDATION_VALIDATE_H_ */
