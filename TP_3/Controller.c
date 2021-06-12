@@ -92,7 +92,7 @@ int controller_addEmployee(LinkedList *pArrayListEmployee)
 		inputInt(&salary, "Enter salary: ", "Error, enter salary: ");
 		employee_setSueldo(newEmployee, salary);
 
-		get_Id(pArrayListEmployee, &id);
+		getAutoId(pArrayListEmployee, &id);
 		employee_setId(newEmployee, id);
 
 		ll_add(pArrayListEmployee, newEmployee);
@@ -124,9 +124,9 @@ int controller_editEmployee(LinkedList *pArrayListEmployee)
 	returnValue = FALSE;
 
 	inputInt(&switchCondition, "Enter id to modify: ", "Error, enter id to modify: ");
-	if (pArrayListEmployee != NULL && ll_get(pArrayListEmployee, switchCondition - 1) != 0) //No con ids, comparar con posicion
+	editEmployee = EmployeeByID(pArrayListEmployee, switchCondition);
+	if (pArrayListEmployee != NULL && editEmployee != NULL)
 	{
-		editEmployee = ll_get(pArrayListEmployee, switchCondition - 1);
 		do
 		{
 			system("cls");

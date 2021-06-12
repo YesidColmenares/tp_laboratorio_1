@@ -16,7 +16,30 @@
 #define TRUE 1
 #define FALSE 0
 
-int get_Id(LinkedList *pArrayListEmployee, int *id)
+Employee* EmployeeByID(LinkedList *pArrayListEmployee, int id)
+{
+	Employee *returnValue;
+	int i;
+	int sizeList;
+
+	returnValue = NULL;
+	if (pArrayListEmployee != NULL)
+	{
+		sizeList = ll_len(pArrayListEmployee);
+		for (i = 0; i < sizeList; i++)
+		{
+			if (((Employee*) ll_get(pArrayListEmployee, i))->id == id)
+			{
+				returnValue = (Employee*) ll_get(pArrayListEmployee, i);
+				break;
+			}
+		}
+	}
+
+	return returnValue;
+}
+
+int getAutoId(LinkedList *pArrayListEmployee, int *id)
 {
 	int returnValue;
 	int sizeList;
