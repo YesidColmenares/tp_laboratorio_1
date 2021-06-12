@@ -16,26 +16,21 @@
 #define TRUE 1
 #define FALSE 0
 
-int EmployeeByID(LinkedList *pArrayListEmployee, int id, int *index)
+Employee* EmployeeByID(LinkedList *pArrayListEmployee, int id)
 {
-	int returnValue;
+	Employee *returnValue;
 	int i;
 	int sizeList;
-	int auxId;
-	Employee *auxEmployee;
 
-	returnValue = FALSE;
+	returnValue = NULL;
 	if (pArrayListEmployee != NULL)
 	{
 		sizeList = ll_len(pArrayListEmployee);
 		for (i = 0; i < sizeList; i++)
 		{
-			auxEmployee = (Employee*) ll_get(pArrayListEmployee, i);
-			employee_getId(auxEmployee, &auxId);
-			if (auxId == id)
+			if (((Employee*) ll_get(pArrayListEmployee, i))->id == id)
 			{
-				*index = i;
-				returnValue = TRUE;
+				returnValue = (Employee*) ll_get(pArrayListEmployee, i);
 				break;
 			}
 		}

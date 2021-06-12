@@ -10,7 +10,7 @@
 #include "LinkedList.h"
 #include "Employee.h"
 
-int EmployeeByID(LinkedList *pArrayListEmployee, int id, int *index);
+Employee* EmployeeByID(LinkedList *pArrayListEmployee, int id);
 
 int getAutoId(LinkedList *pArrayListEmployee, int *id);
 
