@@ -113,6 +113,7 @@ int controller_editEmployee(LinkedList *pArrayListEmployee)
 	int returnValue;
 	int switchCondition;
 	int whileCondition;
+	int index;
 
 	char name[SIZENAME];
 	int hoursWorked;
@@ -124,7 +125,8 @@ int controller_editEmployee(LinkedList *pArrayListEmployee)
 	returnValue = FALSE;
 
 	inputInt(&switchCondition, "Enter id to modify: ", "Error, enter id to modify: ");
-	editEmployee = EmployeeByID(pArrayListEmployee, switchCondition);
+	EmployeeByID(pArrayListEmployee, switchCondition, &index);
+	editEmployee = ll_get(pArrayListEmployee, index);
 	if (pArrayListEmployee != NULL && editEmployee != NULL)
 	{
 		do
@@ -171,6 +173,7 @@ int controller_removeEmployee(LinkedList *pArrayListEmployee)
 {
 	int returnValue;
 	int id;
+	int indexList;
 
 	Employee *removeEmployee;
 
@@ -178,7 +181,8 @@ int controller_removeEmployee(LinkedList *pArrayListEmployee)
 	if (pArrayListEmployee != NULL)
 	{
 		inputInt(&id, "Enter id remove: ", "Error, enter id remove:");
-		removeEmployee = ll_pop(pArrayListEmployee, id - 1);
+		EmployeeByID(pArrayListEmployee, id, &indexList);
+		ll_remove(pArrayListEmployee, indexList);
 		if (removeEmployee != NULL)
 		{
 			system("cls");
