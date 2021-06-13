@@ -62,17 +62,17 @@ int main()
 
 			case 2:
 				system("cls");
-				if (fileValidationInUse(pArrayListEmployee) != TRUE) //No entrar hasta la opcion 1
+				if (fileValidationInUse(pArrayListEmployee) != TRUE)
 				{
 					inputString(path, "Enter the path: ", "Error, enter the path: ", SIZEPATH);
 					if (controller_loadFromBinary(path, pArrayListEmployee))
 					{
-
+						system("cls");
 						printf("%s file uploaded successfully", path);
 					}
 					else
 					{
-
+						system("cls");
 						printf("! Error loading %s file !", path);
 					}
 				}
@@ -87,12 +87,12 @@ int main()
 				system("cls");
 				if (controller_addEmployee(pArrayListEmployee))
 				{
-
+					system("cls");
 					printf("Successfully registered employee");
 				}
 				else
 				{
-
+					system("cls");
 					printf("! Error registering employee or the Linked List is NULL ! ");
 				}
 				break;
@@ -184,13 +184,13 @@ int main()
 					if (controller_saveAsText(path, pArrayListEmployee))
 					{
 						system("cls");
-						printf("\nSuccessfully saved");
+						printf("Successfully saved");
 
 					}
 					else
 					{
 						system("cls");
-						printf("\nError saving file");
+						printf("Error saving file");
 					}
 				}
 				else
@@ -208,7 +208,7 @@ int main()
 					if (controller_saveAsBinary(path, pArrayListEmployee))
 					{
 						system("cls");
-						printf("\nSuccessfully saved");
+						printf("Successfully saved");
 					}
 					else
 					{

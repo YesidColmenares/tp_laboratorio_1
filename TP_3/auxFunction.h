@@ -14,7 +14,7 @@ Employee* EmployeeByID(LinkedList *pArrayListEmployee, int id);
 
 int getAutoId(LinkedList *pArrayListEmployee, int *id);
 
-int functionAux(LinkedList *pArrayListEmployee);
+int saveBackup(LinkedList *pArrayListEmployee);
 
 int fileValidationInUse(LinkedList *pArrayListEmployee);
 

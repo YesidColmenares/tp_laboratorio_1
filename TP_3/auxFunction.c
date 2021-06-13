@@ -64,7 +64,7 @@ int getAutoId(LinkedList *pArrayListEmployee, int *id)
 	return returnValue;
 }
 
-int functionAux(LinkedList *pArrayListEmployee)
+int saveBackup(LinkedList *pArrayListEmployee)
 {
 	int option;
 	int returnValue;
@@ -115,7 +115,7 @@ int fileValidationInUse(LinkedList *pArrayListEmployee)
 		if (option == 1)
 		{
 			system("cls");
-			if (functionAux(pArrayListEmployee))
+			if (saveBackup(pArrayListEmployee))
 			{
 				returnValue = TRUE;
 			}
@@ -134,14 +134,16 @@ int saveEmployeesCsv(FILE *file, LinkedList *pArrayListEmployee)
 {
 	int returnValue;
 	int i;
+	int lenList;
 	Employee *employee;
 
+	lenList = ll_len(pArrayListEmployee);
 	returnValue = FALSE;
 	if (pArrayListEmployee != NULL)
 	{
 		fprintf(file, "id,name,hrsWorked,salary\n");
 
-		for (i = 0; i < ll_len(pArrayListEmployee); i++)
+		for (i = 0; i < lenList; i++)
 		{
 			employee = (Employee*) ll_get(pArrayListEmployee, i);
 			fprintf(file, "%d,%s,%d,%d\n", employee->id, employee->name, employee->hoursWorked, employee->salary);
@@ -155,22 +157,23 @@ int saveEmployeesBin(FILE *file, LinkedList *pArrayListEmployee)
 {
 	int returnValue;
 	int i;
+	int lenList;
 	Employee *employee;
 
 	returnValue = FALSE;
 	if (pArrayListEmployee != NULL)
 	{
-		for (i = 0; i < ll_len(pArrayListEmployee); i++)
+		lenList = ll_len(pArrayListEmployee);
+		returnValue = TRUE;
+		for (i = 0; i < lenList; i++)
 		{
 			employee = (Employee*) ll_get(pArrayListEmployee, i);
-
 			if (fwrite(employee, sizeof(Employee), 1, file) != 1)
 			{
 				returnValue = FALSE;
 				break;
 			}
 		}
-		returnValue = TRUE;
 	}
 	return returnValue;
 }
@@ -201,7 +204,7 @@ void printSortingMenu()
 
 void printEditMenu(Employee *this)
 {
-	printf("ID            NAME      HRSWORKED      SALARY");
+	printf("ID            NAME      HRSWORKED      SALARY\n");
 	employee_show(this);
 	printf("\n-----------------------------------------------------------");
 	printf("\n---------------------- EDIT EMPLOYEES ---------------------");

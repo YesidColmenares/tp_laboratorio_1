@@ -179,6 +179,7 @@ int controller_removeEmployee(LinkedList *pArrayListEmployee)
 	if (pArrayListEmployee != NULL)
 	{
 		inputInt(&id, "Enter id remove: ", "Error, enter id remove:");
+
 		removeEmployee = EmployeeByID(pArrayListEmployee, id);
 		indexList = ll_indexOf(pArrayListEmployee, removeEmployee);
 		ll_remove(pArrayListEmployee, indexList);
@@ -219,6 +220,7 @@ int controller_ListEmployee(LinkedList *pArrayListEmployee)
 			employee_show(printEmployee);
 			returnValue = TRUE;
 		}
+
 	}
 
 	return returnValue;
@@ -278,7 +280,6 @@ int controller_sortEmployee(LinkedList *pArrayListEmployee)
 					system("cls");
 					whileCondition = 4;
 					break;
-
 			}
 
 		} while (whileCondition != 4);
