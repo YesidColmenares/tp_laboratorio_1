@@ -227,6 +227,8 @@ int main()
 				break;
 			case 10:
 				system("cls");
+				ll_clear(pArrayListEmployee);
+				free(pArrayListEmployee);
 				whileCondition = 10;
 				break;
 		}
