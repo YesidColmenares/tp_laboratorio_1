@@ -18,7 +18,7 @@
  * @param textStringError, error warning
  * @param min, minimum number to enter
  * @param max, maximum number to enter
- * @return,
+ * @return, 0 if it is correct or -1 if there is an error
  */
 int inputIntR(int *intNumberEntered, char *textString, char *textStringError, int min, int max);
 
@@ -28,6 +28,7 @@ int inputIntR(int *intNumberEntered, char *textString, char *textStringError, in
  * @param intNumberEntered, number to validate
  * @param textString, user instructions
  * @param textStringError, error warning
+ * @return, 0 if it is correct or -1 if there is an error
  */
 int inputInt(int *intNumberEntered, char *textString, char *textStringError);
 
@@ -39,6 +40,7 @@ int inputInt(int *intNumberEntered, char *textString, char *textStringError);
  * @param textStringError, error warning
  * @param min, minimum number to enter
  * @param max, maximum number to enter
+ * @return, 0 if it is correct or -1 if there is an error
  */
 int inputDoubleR(double *doubleNumberEntered, char *textString, char *textStringError, double min, double max);
 
@@ -50,6 +52,7 @@ int inputDoubleR(double *doubleNumberEntered, char *textString, char *textString
  * @param textStringError, error warning
  * @param min, minimum number to enter
  * @param max, maximum number to enter
+ * @return, 0 if it is correct or -1 if there is an error
  */
 int inputFloatR(float *floatNumberEntered, char *textString, char *textStringError, float min, float max);
 
@@ -59,6 +62,7 @@ int inputFloatR(float *floatNumberEntered, char *textString, char *textStringErr
  * @param floatNumberEntered, number to validate
  * @param textString, user instructions
  * @param textStringError, error warning
+ * @return, 0 if it is correct or -1 if there is an error
  */
 int inputFloat(float *floatNumberEntered, char *textString, char *textStringError);
 
@@ -68,6 +72,7 @@ int inputFloat(float *floatNumberEntered, char *textString, char *textStringErro
  * @param charCharacterEntered, char to validate
  * @param textString, user instructions
  * @param textStringError, error warning
+ * @return, 0 if it is correct or -1 if there is an error
  */
 int inputChar(char *charCharacterEntered, char *textString, char *textStringError);
 
@@ -77,6 +82,7 @@ int inputChar(char *charCharacterEntered, char *textString, char *textStringErro
  * @param charStringEntered, character string to validate
  * @param textString, user instructions
  * @param textStringError, error warning
+ * @return, 0 if it is correct or -1 if there is an error
  */
 int inputString(char *charStringEntered, char *textString, char *textStringError, int size);
 

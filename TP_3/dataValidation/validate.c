@@ -8,8 +8,8 @@
 #include "validate.h"
 
 #include "charString.h"
-#define TRUE 1
-#define FALSE 0
+#define TRUE 0
+#define FALSE -1
 
 int validateRangeDouble(double value, double min, double max)
 {
@@ -30,19 +30,9 @@ int validateRangeInt(int value, int min, int max)
 
 	returnValue = FALSE;
 
-	if (max == 0)
+	if (value < min || value > max)
 	{
-		if (value < min)
-		{
-			returnValue = TRUE;
-		}
-	}
-	else
-	{
-		if (value < min || value > max)
-		{
-			returnValue = TRUE;
-		}
+		returnValue = TRUE;
 	}
 
 	return returnValue;

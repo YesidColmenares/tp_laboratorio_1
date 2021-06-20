@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "auxiliary.h"
 #include "LinkedList.h"
 #include "Controller.h"
 #include "Employee.h"
-#include "auxFunction.h"
 #include "dataEntry/input.h"
 #define SIZEPATH 100
+#define TRUE 0
+#define FALSE -1
 
 /****************************************************
  Menu:
@@ -32,16 +35,16 @@ int main()
 
 	do
 	{
-		printMainMenu();
+		auxiliary_printMainMenu();
 		inputIntR(&optionMenu, "\nEnter option: ", "\nError, enter option: ", 1, 10);
 		switch (optionMenu)
 		{
 			case 1:
 				system("cls");
-				if (fileValidationInUse(pArrayListEmployee) != TRUE)
+				if (auxiliary_fileInUse(pArrayListEmployee) != TRUE)
 				{
 					inputString(path, "Enter the path: ", "Error, enter the path: ", SIZEPATH);
-					if (controller_loadFromText(path, pArrayListEmployee))
+					if (controller_loadFromText(path, pArrayListEmployee) == TRUE)
 					{
 						system("cls");
 						printf("%s file uploaded successfully", path);
@@ -62,10 +65,10 @@ int main()
 
 			case 2:
 				system("cls");
-				if (fileValidationInUse(pArrayListEmployee) != TRUE)
+				if (auxiliary_fileInUse(pArrayListEmployee) != TRUE)
 				{
 					inputString(path, "Enter the path: ", "Error, enter the path: ", SIZEPATH);
-					if (controller_loadFromBinary(path, pArrayListEmployee))
+					if (controller_loadFromBinary(path, pArrayListEmployee) == TRUE)
 					{
 						system("cls");
 						printf("%s file uploaded successfully", path);
@@ -85,7 +88,7 @@ int main()
 
 			case 3:
 				system("cls");
-				if (controller_addEmployee(pArrayListEmployee))
+				if (controller_addEmployee(pArrayListEmployee) == TRUE)
 				{
 					system("cls");
 					printf("Successfully registered employee");
@@ -102,7 +105,7 @@ int main()
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
 					system("cls");
-					if (controller_editEmployee(pArrayListEmployee))
+					if (controller_editEmployee(pArrayListEmployee) == TRUE)
 					{
 						system("cls");
 						printf("Employee successfully modified");
@@ -125,7 +128,7 @@ int main()
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
 					system("cls");
-					if (controller_removeEmployee(pArrayListEmployee))
+					if (controller_removeEmployee(pArrayListEmployee) == TRUE)
 					{
 						printf("Employee removed successfully");
 					}
@@ -146,7 +149,7 @@ int main()
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
 					system("cls");
-					if (!controller_ListEmployee(pArrayListEmployee))
+					if (!controller_ListEmployee(pArrayListEmployee) == TRUE)
 					{
 						system("cls");
 						printf("! Error, linked list is NULL !");
@@ -163,7 +166,7 @@ int main()
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
 					system("cls");
-					if (!controller_sortEmployee(pArrayListEmployee))
+					if (!controller_sortEmployee(pArrayListEmployee) == TRUE)
 					{
 						system("cls");
 						printf("! Error, linked list is NULL !");
@@ -181,7 +184,7 @@ int main()
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
 					inputString(path, "Enter the path: ", "Error, enter the path: ", SIZEPATH);
-					if (controller_saveAsText(path, pArrayListEmployee))
+					if (controller_saveAsText(path, pArrayListEmployee)== TRUE)
 					{
 						system("cls");
 						printf("Successfully saved");
@@ -205,7 +208,7 @@ int main()
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
 					inputString(path, "Enter the path: ", "Error, enter the path: ", SIZEPATH);
-					if (controller_saveAsBinary(path, pArrayListEmployee))
+					if (controller_saveAsBinary(path, pArrayListEmployee)== TRUE)
 					{
 						system("cls");
 						printf("Successfully saved");

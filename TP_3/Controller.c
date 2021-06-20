@@ -4,28 +4,21 @@
 #include "LinkedList.h"
 #include "Employee.h"
 #include "parser.h"
-#include "auxFunction.h"
 #include "dataEntry/input.h"
 #include "Controller.h"
+#include "auxiliary.h"
 
-#define TRUE 1
-#define FALSE 0
+#define TRUE 0
+#define FALSE -1
 #define SIZENAME 128
 
-/** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_loadFromText(char *path, LinkedList *pArrayListEmployee)
 {
 	int returnValue;
 	FILE *file;
 
 	returnValue = FALSE;
-	if (validatePath(path, ".csv"))
+	if (validatePath(path, ".csv") == TRUE)
 	{
 		file = fopen(path, "r");
 		if (pArrayListEmployee != NULL && file != NULL)
@@ -38,20 +31,13 @@ int controller_loadFromText(char *path, LinkedList *pArrayListEmployee)
 	return returnValue;
 }
 
-/** \brief Carga los datos de los empleados desde el archivo data.csv (modo binario).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_loadFromBinary(char *path, LinkedList *pArrayListEmployee)
 {
 	int returnValue;
 	FILE *file;
 
 	returnValue = FALSE;
-	if (validatePath(path, ".bin"))
+	if (validatePath(path, ".bin") == TRUE)
 	{
 		file = fopen(path, "rb");
 		if (pArrayListEmployee != NULL && file != NULL)
@@ -63,145 +49,81 @@ int controller_loadFromBinary(char *path, LinkedList *pArrayListEmployee)
 	return returnValue;
 }
 
-/** \brief Alta de empleados
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_addEmployee(LinkedList *pArrayListEmployee)
 {
 	int returnValue;
-	Employee *newEmployee = employee_new();
-
 	int salary;
 	char name[SIZENAME];
 	int hoursWorked;
 	int id;
+	Employee *newEmployee;
 
+	newEmployee = employee_new();
 	returnValue = FALSE;
 	if (newEmployee != NULL)
 	{
 		inputString(name, "Enter name: ", "Error, enter name: ", SIZENAME);
 		employee_setNombre(newEmployee, name);
 
-		inputInt(&hoursWorked, "Enter hours worked: ", "Error, enter hours worked: ");
+		inputIntR(&hoursWorked, "Enter hours worked: ", "Error, enter hours worked: ", 0, 400);
 		employee_setHorasTrabajadas(newEmployee, hoursWorked);
 
 		inputInt(&salary, "Enter salary: ", "Error, enter salary: ");
 		employee_setSueldo(newEmployee, salary);
 
-		getAutoId(pArrayListEmployee, &id);
+		auxiliary_readId(pArrayListEmployee, &id);
 		employee_setId(newEmployee, id);
 
 		ll_add(pArrayListEmployee, newEmployee);
+		auxiliary_saveId(newEmployee);
 		returnValue = TRUE;
 	}
 	return returnValue;
 }
 
-/** \brief Modificar datos de empleado
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_editEmployee(LinkedList *pArrayListEmployee)
 {
 	int returnValue;
-	int switchCondition;
-	int whileCondition;
+	int returnId;
+	int indexList;
 
-	char name[SIZENAME];
-	int hoursWorked;
-	int salary;
+	inputInt(&returnId, "Enter id to modify: ", "Error, enter id to modify: ");
+	indexList = auxiliary_getIndexById(pArrayListEmployee, returnId);
 
-	Employee *editEmployee;
-
-	whileCondition = 0;
 	returnValue = FALSE;
-
-	inputInt(&switchCondition, "Enter id to modify: ", "Error, enter id to modify: ");
-	editEmployee = EmployeeByID(pArrayListEmployee, switchCondition);
-	if (pArrayListEmployee != NULL && editEmployee != NULL)
+	if (pArrayListEmployee != NULL && indexList != -1)
 	{
-		do
-		{
-			system("cls");
-			printEditMenu(editEmployee);
-			inputIntR(&switchCondition, "\nEnter option: ", "\nError, enter option: ", 1, 4);
-			switch (switchCondition)
-			{
-				case 1:
-					inputString(name, "Enter name: ", "Error, enter name: ", SIZENAME);
-					employee_setNombre(editEmployee, name);
-					break;
-
-				case 2:
-					inputInt(&hoursWorked, "Enter hours worked: ", "Error, enter hours worked: ");
-					employee_setHorasTrabajadas(editEmployee, hoursWorked);
-					break;
-
-				case 3:
-					inputInt(&salary, "Enter salary: ", "Error, enter salary: ");
-					employee_setSueldo(editEmployee, salary);
-					break;
-
-				case 4:
-					whileCondition = 4;
-					break;
-			}
-		} while (whileCondition != 4);
-		returnValue = TRUE;
+		returnValue = auxiliary_editMenu(pArrayListEmployee, indexList);
 	}
 
 	return returnValue;
 }
 
-/** \brief Baja de empleado
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
-
- */
 int controller_removeEmployee(LinkedList *pArrayListEmployee)
 {
 	int returnValue;
 	int id;
 	int indexList;
-
-	Employee *removeEmployee;
+	void *pElement;
 
 	returnValue = FALSE;
 	if (pArrayListEmployee != NULL)
 	{
 		inputInt(&id, "Enter id remove: ", "Error, enter id remove:");
+		indexList = auxiliary_getIndexById(pArrayListEmployee, id);
 
-		removeEmployee = EmployeeByID(pArrayListEmployee, id);
-		indexList = ll_indexOf(pArrayListEmployee, removeEmployee);
-		ll_remove(pArrayListEmployee, indexList);
-		if (removeEmployee != NULL)
+		if (indexList != FALSE)
 		{
-			system("cls");
-			employee_show(removeEmployee);
-			employee_delete(removeEmployee);
+			pElement = ll_pop(pArrayListEmployee, indexList);
+			employee_show(pElement);
+			employee_delete(pElement);
 			returnValue = TRUE;
 		}
 	}
-
 	return returnValue;
 }
 
-/** \brief Listar empleados
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
+
 int controller_ListEmployee(LinkedList *pArrayListEmployee)
 {
 	int returnValue;
@@ -209,6 +131,7 @@ int controller_ListEmployee(LinkedList *pArrayListEmployee)
 	int sizeListEmployee;
 	Employee *printEmployee;
 
+	printEmployee = NULL;
 	returnValue = FALSE;
 	if (pArrayListEmployee != NULL)
 	{
@@ -226,75 +149,23 @@ int controller_ListEmployee(LinkedList *pArrayListEmployee)
 	return returnValue;
 }
 
-/** \brief Ordenar empleados
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_sortEmployee(LinkedList *pArrayListEmployee)
 {
 	int returnValue;
-	int whileCondition;
-	int switchCondition;
-	int returnOption;
-
 	LinkedList *pArrayAuxCopy;
 
 	returnValue = FALSE;
 	if (pArrayListEmployee != NULL)
 	{
 		pArrayAuxCopy = ll_clone(pArrayListEmployee);
-		do
+		if (auxiliary_sortMenu(pArrayAuxCopy) == TRUE)
 		{
-			printSortingMenu();
-			inputIntR(&switchCondition, "\n\nEnter option: ", "Error, enter option: ", 1, 4);
-			switch (switchCondition)
-			{
-				case 1:
-					system("cls");
-					inputIntR(&returnOption, "Enter 0 to sort A-Z\nEnter 1 to sort Z-A: ", "Error, Enter 0 to sort A-Z\nEnter 1 to sort Z-A: ", 0, 1);
-					ll_sort(pArrayAuxCopy, sortByName, returnOption);
-					system("cls");
-					controller_ListEmployee(pArrayAuxCopy);
-					break;
-
-				case 2:
-					system("cls");
-					inputIntR(&returnOption, "Enter 0 to order lowest to highest\nEnter 1 to order highest to lower: ", "Error, Enter 0 to order lowest to highest\nEnter 1 to order highest to lower: ", 0, 1);
-					ll_sort(pArrayAuxCopy, sortByHoursWorked, returnOption);
-					system("cls");
-					controller_ListEmployee(pArrayAuxCopy);
-					break;
-
-				case 3:
-					system("cls");
-					inputIntR(&returnOption, "Enter 0 to order lowest to highest\nEnter 1 to order highest to lower: ", "Error, Enter 0 to order lowest to highest\nEnter 1 to order highest to lower: ", 0, 1);
-					ll_sort(pArrayAuxCopy, sortBySalary, returnOption);
-					system("cls");
-					controller_ListEmployee(pArrayAuxCopy);
-					break;
-
-				case 4:
-					system("cls");
-					whileCondition = 4;
-					break;
-			}
-
-		} while (whileCondition != 4);
-		returnValue = TRUE;
+			returnValue = TRUE;
+		}
 	}
 	return returnValue;
 }
 
-/** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_saveAsText(char *path, LinkedList *pArrayListEmployee)
 {
 	int returnValue;
@@ -306,7 +177,7 @@ int controller_saveAsText(char *path, LinkedList *pArrayListEmployee)
 		file = fopen(path, "w");
 		if (pArrayListEmployee != NULL && file != NULL)
 		{
-			saveEmployeesCsv(file, pArrayListEmployee);
+			auxiliary_saveEmployeesCsv(file, pArrayListEmployee);
 			returnValue = TRUE;
 		}
 		fclose(file);
@@ -314,13 +185,6 @@ int controller_saveAsText(char *path, LinkedList *pArrayListEmployee)
 	return returnValue;
 }
 
-/** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int controller_saveAsBinary(char *path, LinkedList *pArrayListEmployee)
 {
 	int returnValue;
@@ -332,7 +196,7 @@ int controller_saveAsBinary(char *path, LinkedList *pArrayListEmployee)
 		file = fopen(path, "wb");
 		if (pArrayListEmployee != NULL && file != NULL)
 		{
-			saveEmployeesBin(file, pArrayListEmployee);
+			auxiliary_saveEmployeesBin(file, pArrayListEmployee);
 			returnValue = TRUE;
 		}
 		fclose(file);

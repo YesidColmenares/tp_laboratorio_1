@@ -18,7 +18,7 @@
  * @param value, number to validate
  * @param min, minimum allowed value
  * @param max, maximum allowed value
- * @return,1 if it is correct or 2 if there is an error
+ * @return,0 if it is correct or -1 if there is an error
  */
 int validateRangeDouble(double value, double min, double max);
 
@@ -28,7 +28,7 @@ int validateRangeDouble(double value, double min, double max);
  * @param value, number to validate
  * @param min, minimum allowed value
  * @param max, maximum allowed value
- * @return, 1 if it is correct or 2 if there is an error
+ * @return, 0 if it is correct or -1 if there is an error
  */
 int validateRangeInt(int value, int min, int max);
 
@@ -38,7 +38,7 @@ int validateRangeInt(int value, int min, int max);
  * @param value, number to validate
  * @param min, minimum allowed value
  * @param max, maximum allowed value
- * @return, 1 if it is correct or 2 if there is an error
+ * @return, 0 if it is correct or -1 if there is an error
  */
 int validateRangeFloat(float value, float min, float max);
 
@@ -46,12 +46,25 @@ int validateRangeFloat(float value, float min, float max);
  * @brief validate a string of characters
  *
  * @param charStringEntered, string of characters to validate
- * @return 1 if it is correct or 2 if there is an error
+ * @return 0 if it is correct or -1 if there is an error
  */
 int validationString(char *charStringEntered, int size);
 
+/**
+ * @brief remove extra spaces in a string
+ *
+ * @param charStringEntered,  string of characters to validate
+ * @return 0 if it is correct or -1 if there is an error
+ */
 int removeSpaces(char *charStringEntered);
 
+/**
+ * @brief validate the extension of a file path
+ *
+ * @param path, path to file
+ * @param mode, file extension to validate
+ * @return 0 if it is correct or -1 if there is an error
+ */
 int validatePath(char *path, char *mode);
 
 #endif /* DATAVALIDATION_VALIDATE_H_ */

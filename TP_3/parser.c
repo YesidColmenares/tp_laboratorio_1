@@ -1,40 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "auxiliary.h"
 #include "LinkedList.h"
 #include "Employee.h"
-#include "auxFunction.h"
 #include "dataEntry/input.h"
-#define SIZE 25
-#define FALSE 0
-#define TRUE 1
+#define SIZE 128
+#define FALSE -1
+#define TRUE 0
 
-/** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int parser_EmployeeFromText(FILE *pFile, LinkedList *pArrayListEmployee)
 {
+	Employee *newEmployee;
 	int returnValue;
-	int returnRead;
 	char id[SIZE];
 	char name[SIZE];
 	char hoursWorked[SIZE];
 	char salary[SIZE];
 
-	Employee *newEmployee;
-
-	fscanf(pFile, "%[^,], %[^,], %[^,], %[^\n]\n", id, name, hoursWorked, salary);
-
+	newEmployee = NULL;
 	if (pFile != NULL && pArrayListEmployee != NULL)
 	{
+		fscanf(pFile, "%[^,], %[^,], %[^,], %[^\n]\n", id, name, hoursWorked, salary);
 		while (!feof(pFile))
 		{
-			returnRead = fscanf(pFile, "%[^,], %[^,], %[^,], %[^\n]\n", id, name, hoursWorked, salary);
-			if (returnRead != 4)
+			if (fscanf(pFile, "%[^,], %[^,], %[^,], %[^\n]\n", id, name, hoursWorked, salary) != 4)
 			{
 				returnValue = FALSE;
 				break;
@@ -42,24 +33,19 @@ int parser_EmployeeFromText(FILE *pFile, LinkedList *pArrayListEmployee)
 			newEmployee = employee_newParametros(id, name, hoursWorked);
 			employee_setSueldo(newEmployee, atoi(salary));
 			ll_add(pArrayListEmployee, (Employee*) newEmployee);
+			returnValue = TRUE;
 		}
-		returnValue = TRUE;
+		auxiliary_saveId(newEmployee);
 	}
 	return returnValue;
 }
 
-/** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo binario).
- *
- * \param path char*
- * \param pArrayListEmployee LinkedList*
- * \return int
- *
- */
 int parser_EmployeeFromBinary(FILE *pFile, LinkedList *pArrayListEmployee)
 {
 	int returnValue;
 	Employee *newEmployee;
 
+	newEmployee = NULL;
 	returnValue = FALSE;
 	if (pFile != NULL && pArrayListEmployee != NULL)
 	{
@@ -69,9 +55,10 @@ int parser_EmployeeFromBinary(FILE *pFile, LinkedList *pArrayListEmployee)
 			if (fread((Employee*) newEmployee, sizeof(Employee), 1, pFile) != 0)
 			{
 				ll_add(pArrayListEmployee, newEmployee);
+				returnValue = TRUE;
 			}
 		}
-		returnValue = TRUE;
+		auxiliary_saveId(newEmployee);
 	}
 	return returnValue;
 }

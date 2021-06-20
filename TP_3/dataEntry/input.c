@@ -6,8 +6,8 @@
  */
 #include "input.h"
 #include "stdio.h"
-#define TRUE 1
-#define FALSE 0
+#define TRUE 0
+#define FALSE -1
 
 int inputIntR(int *intNumberEntered, char *textString, char *textStringError, int min, int max)
 {

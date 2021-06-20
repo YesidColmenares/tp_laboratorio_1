@@ -1,11 +1,12 @@
 #include "Employee.h"
 #include <stdlib.h>
 #include <string.h>
-#include "auxFunction.h"
+
+#include "auxiliary.h"
 #include "dataValidation/charString.h"
 
-#define FALSE 0
-#define TRUE 1
+#define FALSE -1
+#define TRUE 0
 #define SIZENAME 128
 
 int employee_getSueldo(Employee *this, int *sueldo)
@@ -163,7 +164,7 @@ Employee* employee_newParametros(char *idStr, char *nombreStr, char *horasTrabaj
 	return newEmployee;
 }
 
-int sortByHoursWorked(void *Employee1, void *Employee2)
+int employee_sortByHoursWorked(void *Employee1, void *Employee2)
 {
 	int returnValue;
 	int hoursWorked1;
@@ -195,7 +196,7 @@ int sortByHoursWorked(void *Employee1, void *Employee2)
 	return returnValue;
 }
 
-int sortBySalary(void *Employee1, void *Employee2)
+int employee_sortBySalary(void *Employee1, void *Employee2)
 {
 	int returnValue;
 	int salary1;
@@ -227,7 +228,7 @@ int sortBySalary(void *Employee1, void *Employee2)
 	return returnValue;
 }
 
-int sortById(void *Employee1, void *Employee2)
+int employee_sortById(void *Employee1, void *Employee2)
 {
 	int returnValue;
 	int id1;
@@ -259,7 +260,7 @@ int sortById(void *Employee1, void *Employee2)
 	return returnValue;
 }
 
-int sortByName(void *Employee1, void *Employee2)
+int employee_sortByName(void *Employee1, void *Employee2)
 {
 	int returnValue;
 	char name1[SIZENAME];
