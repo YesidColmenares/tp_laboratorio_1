@@ -28,10 +28,18 @@ int auxiliary_sortMenu(LinkedList *this)
 		do
 		{
 			auxiliary_printSortMenu();
-			inputIntR(&returnOption, "\n\nEnter option: ", "Error, enter option: ", 1, 4);
+			inputIntR(&returnOption, "\n\nEnter option: ", "Error, enter option: ", 1, 5);
 			switch (returnOption)
 			{
 				case 1:
+					system("cls");
+					inputIntR(&returnOption, "Enter 0 to order lowest to highest\nEnter 1 to order highest to lower: ", "Error, Enter 0 to order lowest to highest\nEnter 1 to order highest to lower: ", 0, 1);
+					ll_sort(this, employee_sortById, returnOption);
+					system("cls");
+					controller_ListEmployee(this);
+					break;
+
+				case 2:
 					system("cls");
 					inputIntR(&returnOption, "Enter 0 to sort A-Z\nEnter 1 to sort Z-A: ", "Error, Enter 0 to sort A-Z\nEnter 1 to sort Z-A: ", 0, 1);
 					ll_sort(this, employee_sortByName, returnOption);
@@ -39,7 +47,7 @@ int auxiliary_sortMenu(LinkedList *this)
 					controller_ListEmployee(this);
 					break;
 
-				case 2:
+				case 3:
 					system("cls");
 					inputIntR(&returnOption, "Enter 0 to order lowest to highest\nEnter 1 to order highest to lower: ", "Error, Enter 0 to order lowest to highest\nEnter 1 to order highest to lower: ", 0, 1);
 					ll_sort(this, employee_sortByHoursWorked, returnOption);
@@ -47,7 +55,7 @@ int auxiliary_sortMenu(LinkedList *this)
 					controller_ListEmployee(this);
 					break;
 
-				case 3:
+				case 4:
 					system("cls");
 					inputIntR(&returnOption, "Enter 0 to order lowest to highest\nEnter 1 to order highest to lower: ", "Error, Enter 0 to order lowest to highest\nEnter 1 to order highest to lower: ", 0, 1);
 					ll_sort(this, employee_sortBySalary, returnOption);
@@ -55,7 +63,7 @@ int auxiliary_sortMenu(LinkedList *this)
 					controller_ListEmployee(this);
 					break;
 			}
-		} while (returnOption != 4);
+		} while (returnOption != 5);
 		returnValue = TRUE;
 	}
 	return returnValue;
@@ -87,7 +95,7 @@ int auxiliary_editMenu(LinkedList *this, int indexList)
 					break;
 
 				case 2:
-					inputInt(&hoursWorked, "Enter hours worked: ", "Error, enter hours worked: ");
+					inputIntR(&hoursWorked, "Enter hours worked: ", "Error, enter hours worked: ", 0, 400);
 					employee_setHorasTrabajadas(aux, hoursWorked);
 					break;
 
@@ -152,6 +160,30 @@ int auxiliary_readId(LinkedList *pArrayListEmployee, int *id)
 	return returnValue;
 }
 
+Employee* auxiliary_SearchBiggerId(LinkedList *pArrayListEmployee)
+{
+	int i;
+	int sizeList;
+	Employee *lastEmployee;
+	Employee *aux;
+
+	lastEmployee = (Employee*) ll_get(pArrayListEmployee, 0);
+	aux = NULL;
+	if (pArrayListEmployee != NULL)
+	{
+		sizeList = ll_len(pArrayListEmployee);
+		for (i = 0; i < sizeList; i++)
+		{
+			aux = (Employee*) ll_get(pArrayListEmployee, i);
+			if (lastEmployee->id < aux->id)
+			{
+				lastEmployee = aux;
+			}
+		}
+	}
+	return lastEmployee;
+}
+
 int auxiliary_saveId(Employee *this)
 {
 	int returnValue;
@@ -186,10 +218,15 @@ int auxiliary_saveBackup(LinkedList *pArrayListEmployee)
 		do
 		{
 			inputString(path, "Enter the path: ", "Error, enter the path: ", SIZE);
-			if (controller_saveAsBinary(path, pArrayListEmployee))
+			if (controller_saveAsBinary(path, pArrayListEmployee) == TRUE)
 			{
 				ll_clear(pArrayListEmployee);
 				returnValue = TRUE;
+			}
+			else
+			{
+				system("cls");
+				printf("Error saving file\n");
 			}
 		} while (returnValue == FALSE);
 	}
@@ -199,10 +236,15 @@ int auxiliary_saveBackup(LinkedList *pArrayListEmployee)
 		do
 		{
 			inputString(path, "Enter the path: ", "Error, enter the path: ", SIZE);
-			if (controller_saveAsText(path, pArrayListEmployee))
+			if (controller_saveAsText(path, pArrayListEmployee) == TRUE)
 			{
 				ll_clear(pArrayListEmployee);
 				returnValue = TRUE;
+			}
+			else
+			{
+				system("cls");
+				printf("\nError saving file\n");
 			}
 		} while (returnValue == FALSE);
 	}
@@ -216,14 +258,14 @@ int auxiliary_fileInUse(LinkedList *pArrayListEmployee)
 	int option;
 
 	returnValue = FALSE;
-	if (!ll_isEmpty(pArrayListEmployee))
+	if (pArrayListEmployee != NULL && !ll_isEmpty(pArrayListEmployee))
 	{
 		printf("you have an active file on your system, do you want to make a backup before proceeding with a new file?");
 		inputIntR(&option, "\nEnter 1 to backup,\nEnter 2 to remove: ", "\nError,  Enter 1 to backup,\nEnter 2 to remove: ", 1, 2);
 		if (option == 1)
 		{
 			system("cls");
-			if (auxiliary_saveBackup(pArrayListEmployee))
+			if (auxiliary_saveBackup(pArrayListEmployee) == TRUE)
 			{
 				returnValue = TRUE;
 			}
@@ -234,7 +276,6 @@ int auxiliary_fileInUse(LinkedList *pArrayListEmployee)
 			returnValue = TRUE;
 		}
 	}
-
 	return returnValue;
 }
 
@@ -290,24 +331,25 @@ void auxiliary_printMainMenu()
 {
 	printf("\n------------------ WELCOME TO THE SYSTEM ------------------");
 	printf("\n1. Load employee data from data.csv file (text mode)");
-	printf("\n2. Load employee data from data.csv file (binary mode)");
+	printf("\n2. Load employee data from data.bin file (binary mode)");
 	printf("\n3. Employee registration");
 	printf("\n4. Modify employee data");
 	printf("\n5. Employee retirement");
 	printf("\n6. List employees");
 	printf("\n7. Sort employees");
 	printf("\n8. Save employee data in data.csv file (text mode)");
-	printf("\n9. Save employee data to data.csv file (binary mode)");
+	printf("\n9. Save employee data to data.bin file (binary mode)");
 	printf("\n10. Exit");
 }
 
 void auxiliary_printSortMenu()
 {
 	printf("\n--------------------- PRINT EMPLOYEES ---------------------");
-	printf("\n1. Sort by name");
-	printf("\n2. Sort by hours worked ");
-	printf("\n3. Sort by salary");
-	printf("\n4. Exit");
+	printf("\n1. Sort by id");
+	printf("\n2. Sort by name");
+	printf("\n3. Sort by hours worked ");
+	printf("\n4. Sort by salary");
+	printf("\n5. Exit");
 }
 
 void auxiliary_printEditMenu(Employee *this)

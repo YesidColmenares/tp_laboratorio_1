@@ -91,7 +91,7 @@ int controller_editEmployee(LinkedList *pArrayListEmployee)
 	indexList = auxiliary_getIndexById(pArrayListEmployee, returnId);
 
 	returnValue = FALSE;
-	if (pArrayListEmployee != NULL && indexList != -1)
+	if (pArrayListEmployee != NULL && indexList != FALSE)
 	{
 		returnValue = auxiliary_editMenu(pArrayListEmployee, indexList);
 	}
@@ -122,7 +122,6 @@ int controller_removeEmployee(LinkedList *pArrayListEmployee)
 	}
 	return returnValue;
 }
-
 
 int controller_ListEmployee(LinkedList *pArrayListEmployee)
 {
@@ -172,7 +171,7 @@ int controller_saveAsText(char *path, LinkedList *pArrayListEmployee)
 	FILE *file;
 
 	returnValue = FALSE;
-	if (validatePath(path, ".csv"))
+	if (validatePath(path, ".csv") == TRUE)
 	{
 		file = fopen(path, "w");
 		if (pArrayListEmployee != NULL && file != NULL)
@@ -191,7 +190,7 @@ int controller_saveAsBinary(char *path, LinkedList *pArrayListEmployee)
 	FILE *file;
 
 	returnValue = FALSE;
-	if (validatePath(path, ".bin"))
+	if (validatePath(path, ".bin") == TRUE)
 	{
 		file = fopen(path, "wb");
 		if (pArrayListEmployee != NULL && file != NULL)

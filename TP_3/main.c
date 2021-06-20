@@ -52,7 +52,7 @@ int main()
 					else
 					{
 						system("cls");
-						printf("! Error loading %s file !", path);
+						printf("! Error loading %s, the file may be corrupted or the path is wrong !", path);
 					}
 				}
 				else
@@ -149,7 +149,7 @@ int main()
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
 					system("cls");
-					if (!controller_ListEmployee(pArrayListEmployee) == TRUE)
+					if (controller_ListEmployee(pArrayListEmployee) != TRUE)
 					{
 						system("cls");
 						printf("! Error, linked list is NULL !");
@@ -166,7 +166,7 @@ int main()
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
 					system("cls");
-					if (!controller_sortEmployee(pArrayListEmployee) == TRUE)
+					if (controller_sortEmployee(pArrayListEmployee) != TRUE)
 					{
 						system("cls");
 						printf("! Error, linked list is NULL !");
@@ -184,7 +184,7 @@ int main()
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
 					inputString(path, "Enter the path: ", "Error, enter the path: ", SIZEPATH);
-					if (controller_saveAsText(path, pArrayListEmployee)== TRUE)
+					if (controller_saveAsText(path, pArrayListEmployee) == TRUE)
 					{
 						system("cls");
 						printf("Successfully saved");
@@ -208,7 +208,7 @@ int main()
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
 					inputString(path, "Enter the path: ", "Error, enter the path: ", SIZEPATH);
-					if (controller_saveAsBinary(path, pArrayListEmployee)== TRUE)
+					if (controller_saveAsBinary(path, pArrayListEmployee) == TRUE)
 					{
 						system("cls");
 						printf("Successfully saved");

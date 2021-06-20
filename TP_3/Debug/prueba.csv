@@ -1,10 +1,10 @@
-1,Lou,120,10000
+id,name,hrsWorked,salary
 2,Ulrike,180,25000
 3,Brade,325,20000
 4,Kimbell,120,50000
 5,Sheelagh,220,18000
 6,Gayle,120,30000
-59,Celene,120,50000
+59,Celena,500,20000
 60,Kori,90,50000
 61,Deeyn,88,20000
 62,Marysa,75,20000
@@ -30,3 +30,4 @@
 998,Jaye,75,25000
 999,Tamarra,60,15000
 200,Saleem,60,20000
+1000,Yesid,120,500

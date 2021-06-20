@@ -28,6 +28,14 @@ int auxiliary_sortMenu(LinkedList *this);
 int auxiliary_editMenu(LinkedList *this, int indexList);
 
 /**
+ * @brief
+ *
+ * @param pArrayListEmployee
+ * @return
+ */
+Employee* auxiliary_SearchBiggerId(LinkedList *pArrayListEmployee);
+
+/**
  * @brief save in a text file the last id entered
  *
  * @param this, is the last employee entered

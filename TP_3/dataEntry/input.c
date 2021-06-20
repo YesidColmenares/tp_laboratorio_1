@@ -134,7 +134,7 @@ int inputString(char *charStringEntered, char *textString, char *textStringError
 	{
 		printf(textString, size+1);
 		fflush(stdin);
-		while (scanf("%[^\n]", charStringEntered) == FALSE || validationString(charStringEntered, size) == FALSE|| removeSpaces(charStringEntered) == FALSE)
+		while (scanf("%[^\n]", charStringEntered) == 0 || validationString(charStringEntered, size) == FALSE|| removeSpaces(charStringEntered) == FALSE)
 		{
 			printf(textStringError, size+1);
 			fflush(stdin);
