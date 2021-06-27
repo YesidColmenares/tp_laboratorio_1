@@ -8,7 +8,6 @@
 #ifndef PARSER_H_
 #define PARSER_H_
 #include <stdio.h>
-
 #include "LinkedList.h"
 
 int parser_EmployeeFromText(FILE *pFile, LinkedList *pArrayListEmployee);

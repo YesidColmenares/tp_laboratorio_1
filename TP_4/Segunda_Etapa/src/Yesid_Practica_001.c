@@ -24,6 +24,7 @@ int main(void)
 
 	LinkedList *pArrayListEmployee;
 	int option;
+	int returnId;
 	char pathFile[SIZEPATH];
 
 	pArrayListEmployee = ll_newLinkedList();
@@ -171,6 +172,45 @@ int main(void)
 				break;
 
 			case 8:
+				if (!ll_isEmpty(pArrayListEmployee))
+				{
+					system("cls");
+					if (controller_subList(pArrayListEmployee) != TRUE)
+					{
+						system("cls");
+						printf("! Error, linked list is NULL or the parameters are out of range !");
+					}
+					else
+					{
+						system("cls");
+						printf("Sublist created successfully");
+					}
+				}
+				else
+				{
+					system("cls");
+					printf("! Error, there are no employees in the system !");
+				}
+				break;
+
+			case 9:
+				if (!ll_isEmpty(pArrayListEmployee))
+				{
+					system("cls");
+					if (controller_searchId(pArrayListEmployee) == FALSE)
+					{
+						system("cls");
+						printf("! Error, linked list is NULL or the id does not exist !");
+					}
+				}
+				else
+				{
+					system("cls");
+					printf("! Error, there are no employees in the system !");
+				}
+				break;
+
+			case 10:
 				system("cls");
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
@@ -194,7 +234,7 @@ int main(void)
 				}
 				break;
 
-			case 9:
+			case 11:
 				system("cls");
 				if (!ll_isEmpty(pArrayListEmployee))
 				{
@@ -216,10 +256,10 @@ int main(void)
 					printf("! Error, there are no employees in the system !");
 				}
 				break;
-			case 10:
+			case 12:
 				ll_deleteLinkedList(pArrayListEmployee);
 				break;
 		}
-	} while (option != 10);
+	} while (option != 12);
 }
 

@@ -23,6 +23,10 @@ int controller_ListEmployee(LinkedList *pArrayListEmployee);
 
 int controller_sortEmployee(LinkedList *pArrayListEmployee);
 
+int controller_subList(LinkedList *pArrayListEmployee);
+
+int controller_searchId(LinkedList *pArrayListEmployee);
+
 int controller_saveAsText(char *path, LinkedList *pArrayListEmployee);
 
 int controller_saveAsBinary(char *path, LinkedList *pArrayListEmployee);

@@ -293,7 +293,6 @@ int Auxiliary_EditEmployees(LinkedList *pArrayListEmployee, int index)
 					Employee_SetSalary(auxEmployee, salary);
 					break;
 			}
-
 		} while (option != 6);
 		returnValue = TRUE;
 	}
@@ -372,6 +371,69 @@ int Auxiliary_PrintEmployees(LinkedList *pArrayListEmployee)
 	}
 
 	return returnValue;
+}
+
+int* Auxiliary_AskAndSaveId(LinkedList *pArrayListEmployee, int size)
+{
+	int *returnArray;
+	int *auxArray;
+	int i;
+
+	auxArray = (int*) malloc(sizeof(int) * size);
+	if (auxArray != NULL)
+	{
+		for (i = 0; i < size; i++)
+		{
+			printf("Enter the %d ID", i);
+			inputInt((auxArray + i), ": ", "Error: ");
+		}
+
+		returnArray = Auxiliary_SaveIndex(pArrayListEmployee, auxArray, size);
+	}
+
+	return returnArray;
+}
+
+int* Auxiliary_SaveIndex(LinkedList *pArrayListEmployee, int *arrayId, int size)
+{
+	int i;
+	int *auxArrayIndex;
+
+	auxArrayIndex = (int*) malloc(sizeof(int) * size);
+	if (arrayId != NULL && auxArrayIndex != NULL)
+	{
+		for (i = 0; i < size; i++)
+		{
+			*(auxArrayIndex + i) = Auxiliary_GetIndexById(pArrayListEmployee, *(arrayId + i));
+			if (*(auxArrayIndex + i) == FALSE)
+			{
+				auxArrayIndex = NULL;
+				break;
+			}
+		}
+	}
+	return auxArrayIndex;
+}
+
+LinkedList* Auxiliary_saveEmployees(LinkedList *pArrayListEmployee, int *auxArrayIndex, int size)
+{
+	LinkedList *auxLinkedList;
+	Employee *auxEmployee;
+	int i;
+
+	auxLinkedList = ll_newLinkedList();
+	if (auxLinkedList != NULL && pArrayListEmployee != NULL && auxArrayIndex != NULL)
+	{
+		for (i = 0; i < size; i++)
+		{
+			auxEmployee = (Employee*) ll_get(pArrayListEmployee, *(auxArrayIndex + i));
+			if (ll_contains(auxLinkedList, auxEmployee) == 0)
+			{
+				ll_add(auxLinkedList, auxEmployee);
+			}
+		}
+	}
+	return auxLinkedList;
 }
 
 int Auxiliary_SaveBackup(LinkedList *pArrayListEmployee)
@@ -536,7 +598,9 @@ void Auxiliary_printMainMenu()
 	printf("\n5. Employee retirement");
 	printf("\n6. List employees");
 	printf("\n7. Sort employees");
-	printf("\n8. Save employee data in data.csv file (text mode)");
-	printf("\n9. Save employee data to data.bin file (binary mode)");
-	printf("\n10. Exit");
+	printf("\n8. Create sublist");
+	printf("\n9. Search employees by ID");
+	printf("\n10. Save employee data in data.csv file (text mode)");
+	printf("\n11. Save employee data to data.bin file (binary mode)");
+	printf("\n12. Exit");
 }

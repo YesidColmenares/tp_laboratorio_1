@@ -35,6 +35,12 @@ int Auxiliary_EditEmployees(LinkedList *pArrayListEmployee, int index);
 
 int Auxiliary_AddEmployees(LinkedList *pArrayListEmployee);
 
+int* Auxiliary_AskAndSaveId(LinkedList *pArrayListEmployee, int size);
+
+int* Auxiliary_SaveIndex(LinkedList *pArrayListEmployee, int *arrayId, int size);
+
+LinkedList* Auxiliary_saveEmployees(LinkedList *pArrayListEmployee, int *auxArrayIndex, int size);
+
 int Auxiliary_PrintEmployees(LinkedList *pArrayListEmployee);
 
 int Auxiliary_ReadId(LinkedList *pArrayListEmployee, int *id);

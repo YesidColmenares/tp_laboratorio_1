@@ -37,6 +37,7 @@ int parser_EmployeeFromText(FILE *pFile, LinkedList *pArrayListEmployee)
 				ll_clear(pArrayListEmployee);
 				break;
 			}
+
 			newEmployee = Employee_NewWithParameters(id, firtsName, lastName, gender, years, salary);
 			ll_add(pArrayListEmployee, newEmployee);
 			returnValue = TRUE;

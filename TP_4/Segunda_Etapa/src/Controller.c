@@ -130,6 +130,63 @@ int controller_sortEmployee(LinkedList *pArrayListEmployee)
 	return returnValue;
 }
 
+int controller_subList(LinkedList *pArrayListEmployee)
+{
+	int returnValue;
+	int to;
+	int from;
+	LinkedList *pArrayAuxCopy;
+	char path[20] = "sublist.csv";
+
+	pArrayAuxCopy = NULL;
+	returnValue = FALSE;
+	if (pArrayListEmployee != NULL)
+	{
+		inputInt(&to, "Enter the starting index: ", "Error, enter the starting index: ");
+		inputInt(&from, "Enter end index: ", "Error, enter end index: ");
+		pArrayAuxCopy = ll_subList(pArrayListEmployee, to, from);
+		if (pArrayAuxCopy != NULL)
+		{
+			if (controller_saveAsText(path, pArrayAuxCopy) == TRUE)
+			{
+				returnValue = TRUE;
+			}
+		}
+	}
+	return returnValue;
+}
+
+int controller_searchId(LinkedList *pArrayListEmployee)
+{
+	int returnValue;
+	int sizeArray;
+	int *auxArrayIndex;
+	LinkedList *auxList;
+
+	returnValue = FALSE;
+	if (pArrayListEmployee != NULL)
+	{
+		inputInt(&sizeArray, "Enter the number of employees to search: ", "Error, enter the number of employees to search: ");
+
+		auxArrayIndex = Auxiliary_AskAndSaveId(pArrayListEmployee, sizeArray);
+		if (auxArrayIndex != NULL)
+		{
+			auxList = Auxiliary_saveEmployees(pArrayListEmployee, auxArrayIndex, sizeArray);
+			if (auxList != NULL)
+			{
+				free(auxArrayIndex);
+				if (ll_containsAll(pArrayListEmployee, auxList) == 1)
+				{
+					system("cls");
+					controller_ListEmployee(auxList);
+					ll_deleteLinkedList(auxList);
+					returnValue = TRUE;
+				}
+			}
+		}
+	}
+	return returnValue;
+}
 int controller_saveAsText(char *path, LinkedList *pArrayListEmployee)
 {
 	int returnValue;
